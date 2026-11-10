@@ -23,7 +23,7 @@ ios_min=${IPHONEOS_DEPLOYMENT_TARGET:-15.0}
 binary=$workspace/target/$target/$profile/concat
 [ -f "$binary" ] || { echo "no binary at $binary: build first" >&2; exit 1; }
 
-app=$workspace/target/$target/$profile/Concat.app
+app=$workspace/target/$target/$profile/SJCut.app
 rm -rf "$app"
 mkdir -p "$app"
 cp "$binary" "$app/Concat"

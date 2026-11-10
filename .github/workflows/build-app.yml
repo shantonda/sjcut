@@ -363,8 +363,8 @@ jobs:
       # per cent slower on the platform with the fewest users. Every other
       # target keeps the profile as Cargo.toml writes it. Set before the
       # cache step, so these are part of its key (CARGO is in env-vars).
-      - name: Thin LTO (Intel macOS)
-        if: matrix.platform == 'macos' && matrix.arch == 'x86_64'
+      - name: Thin LTO (macOS)
+        if: matrix.platform == 'macos'
         run: |
           {
             echo "CARGO_PROFILE_APP_LTO=thin"

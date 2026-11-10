@@ -607,10 +607,7 @@ mod tests {
     fn each_platform_has_a_place_for_new_projects() {
         let home = |name: &str| format!("/home/{name}");
         let desktop = || Some(PathBuf::from("/desk"));
-        assert_eq!(
-            location_on("ios", desktop(), home),
-            "/home/Documents/SJCut"
-        );
+        assert_eq!(location_on("ios", desktop(), home), "/home/Documents/SJCut");
         assert_eq!(location_on("ios", None, home), "/home/Documents/SJCut");
         assert_eq!(location_on("android", None, home), "/home/SJCut");
         assert_eq!(
