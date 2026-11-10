@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
-// SPDX-FileCopyrightText: 2026 Jareer Abdullah and Concat contributors
+// SPDX-FileCopyrightText: 2026 SJCut Contributors
 
 //! The timeline's view: where it is looking, how close, with which tool,
 //! and what the lanes know about a track that the document does not.
@@ -56,7 +56,7 @@ pub enum TimelineMsg {
     SnapToggled,
     /// The magnetic timeline, from the tray's button or the Settings
     /// switch. A preference, not view state: it is remembered.
-    /// https://github.com/jub0t/Concat/issues/106
+    /// https://github.com/shantonda/sjcut/issues/106
     MagneticChanged(bool),
     /// The menu's Magnetic row: the other way round.
     MagneticToggled,

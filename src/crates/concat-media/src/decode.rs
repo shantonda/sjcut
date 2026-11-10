@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
-// SPDX-FileCopyrightText: 2026 Jareer Abdullah and Concat contributors
+// SPDX-FileCopyrightText: 2026 SJCut Contributors
 
 //! Pulling RGBA frames out of a file.
 //!
@@ -262,7 +262,7 @@ impl DecodeOptions {
 /// some phones write. A file tagged the wrong one, or tagged nothing and
 /// holding the other, shows grey where it should show black or clips
 /// its shadows and highlights: the washed-out or crushed picture.
-/// https://github.com/jub0t/Concat/issues/103
+/// https://github.com/shantonda/sjcut/issues/103
 #[derive(Clone, Copy, PartialEq, Eq, Hash, Debug, Default)]
 pub enum ColorRange {
     /// 16-235: "tv", "MPEG", "video" or "limited" range. The default
@@ -286,7 +286,7 @@ impl ColorRange {
     /// and what a camera writes. A screen recording holding full-range
     /// pixels and saying nothing is the one case this cannot know, and is
     /// what the override is for.
-    /// https://github.com/jub0t/Concat/issues/103
+    /// https://github.com/shantonda/sjcut/issues/103
     pub fn implied(codec: ffmpeg::codec::Id, pixel: Pixel) -> ColorRange {
         use ffmpeg::codec::Id;
         let picture = matches!(
@@ -580,7 +580,7 @@ fn video_filter(
 /// `alpha_mode=1`; libavcodec's own VP8 and VP9 decoders decode only the
 /// colour plane, and a hardware decoder drops the layer too, so the picture
 /// arrives opaque. libvpx reads both planes. See
-/// <https://github.com/jub0t/Concat/issues/429>.
+/// <https://github.com/shantonda/sjcut/issues/429>.
 fn alpha_decoder(stream: &ffmpeg::format::stream::Stream<'_>) -> Option<&'static str> {
     let alpha = stream
         .metadata()
@@ -726,7 +726,7 @@ impl Decoder {
         // would arrive opaque and cover the lanes below. libvpx reads it,
         // in software, so a track that says it has one goes there and to
         // no device.
-        // https://github.com/jub0t/Concat/issues/429
+        // https://github.com/shantonda/sjcut/issues/429
         let (decoder, accelerated) = match (
             alpha_decoder(&stream),
             options
@@ -1699,7 +1699,7 @@ mod tests {
     /// A WebM alpha layer is a second plane the built-in decoders do not
     /// read; without it the picture arrives opaque and covers the lanes
     /// below. Both flavours go through libvpx and keep it. See
-    /// <https://github.com/jub0t/Concat/issues/429>.
+    /// <https://github.com/shantonda/sjcut/issues/429>.
     #[test]
     fn a_webm_alpha_layer_survives_the_decoder() {
         for fixture in ["alpha-vp8.webm", "alpha-vp9.webm"] {
@@ -1895,7 +1895,7 @@ mod tests {
     /// an SDR file it is the one term added to the fit, on a wide one it
     /// replaces the file's tag among the conversion's terms, and with no
     /// override nothing is said and the frames' own tag decides.
-    /// https://github.com/jub0t/Concat/issues/103
+    /// https://github.com/shantonda/sjcut/issues/103
     #[test]
     fn a_named_range_overrides_the_files_tag() {
         use ffmpeg::color::{Primaries, Range, Space, TransferCharacteristic as Transfer};

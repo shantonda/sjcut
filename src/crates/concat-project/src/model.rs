@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
-// SPDX-FileCopyrightText: 2026 Jareer Abdullah and Concat contributors
+// SPDX-FileCopyrightText: 2026 SJCut Contributors
 
 //! The document model: what a Concat project *is*.
 //!
@@ -133,7 +133,7 @@ pub struct AudioTrack {
 /// should be black until it is read as `full`; a video-range file tagged
 /// full crushes its shadows until it is read as `limited`. Set with
 /// `Command::SetMediaColorRange`; absent means the file's own tag is read.
-/// https://github.com/jub0t/Concat/issues/103
+/// https://github.com/shantonda/sjcut/issues/103
 #[cfg_attr(feature = "schema", derive(schemars::JsonSchema))]
 #[derive(Clone, Copy, PartialEq, Eq, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "lowercase")]
@@ -1987,7 +1987,7 @@ pub struct TextStyle {
     /// default - is the words' own height. With a height the block is a
     /// box exactly that tall, the words centred in it, so a lower third
     /// can be a band of a fixed size whatever is written on it.
-    /// https://github.com/jub0t/Concat/issues/119
+    /// https://github.com/shantonda/sjcut/issues/119
     pub max_height: f64,
     /// Stretches of the words with a look of their own over the rest of
     /// this style - a word in another colour, in bold, bigger. Empty for a

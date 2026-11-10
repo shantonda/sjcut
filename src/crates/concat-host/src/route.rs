@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
-// SPDX-FileCopyrightText: 2026 Jareer Abdullah
+// SPDX-FileCopyrightText: 2026 SJCut Contributors
 
 //! Which network proxy a request goes through, if any: the one the
 //! environment names, or else the one the system's network settings name -
@@ -516,7 +516,7 @@ mod tests {
     fn a_url_is_read_down_to_its_host() {
         let read = |url| target(url).map(|(scheme, host)| format!("{scheme} {host}"));
         assert_eq!(
-            read("https://github.com/jub0t/Concat/releases"),
+            read("https://github.com/shantonda/sjcut/releases"),
             Some("https github.com".into())
         );
         assert_eq!(

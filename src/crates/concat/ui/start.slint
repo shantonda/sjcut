@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
-// SPDX-FileCopyrightText: 2026 Jareer Abdullah
+// SPDX-FileCopyrightText: 2026 SJCut Contributors
 
 import { I18n } from "i18n.slint";
 import { Theme } from "theme/theme.slint";
@@ -1903,7 +1903,7 @@ component NarrowHome inherits Rectangle {
     in property <string> version;
     /// A phone: no folder picker, so no Open; projects live in the app's
     /// own folder, which the page already lists. See platform::pick_folder.
-    /// https://github.com/jub0t/Concat/issues/222
+    /// https://github.com/shantonda/sjcut/issues/222
     in property <bool> phone;
     in property <bool> capcut;
 
@@ -2215,7 +2215,7 @@ export component NewProjectDialog inherits Modal {
     /// A phone: no folder picker, so no Open and no Choose - projects live
     /// in the app's own folder, which the page already lists, and the
     /// location is shown rather than typed. See platform::pick_folder.
-    /// https://github.com/jub0t/Concat/issues/222
+    /// https://github.com/shantonda/sjcut/issues/222
     in property <bool> phone;
     property <bool> narrow: root.width < 680px;
     /// A project needs somewhere to go. Everything else has a default.

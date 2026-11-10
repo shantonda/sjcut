@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
-// SPDX-FileCopyrightText: 2026 Jareer Abdullah and Concat contributors
+// SPDX-FileCopyrightText: 2026 SJCut Contributors
 
 //! The export sheet: the form, the running render, and the result.
 //!
@@ -302,7 +302,7 @@ impl ExportPane {
 
     /// The rung of the ladder that is the project's own size: the one
     /// the sheet lets be picked, since an edit exports at the size it was
-    /// cut at. https://github.com/jub0t/Concat/issues/109
+    /// cut at. https://github.com/shantonda/sjcut/issues/109
     fn own_rung(studio: &Studio) -> usize {
         let own = Self::own_short(studio);
         Self::ladder(studio)

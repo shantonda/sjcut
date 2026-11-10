@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
-// SPDX-FileCopyrightText: 2026 Jareer Abdullah
+// SPDX-FileCopyrightText: 2026 SJCut Contributors
 //! The stage: what is drawn over the monitor and handled on it.
 
 use super::*;
@@ -85,7 +85,7 @@ impl Studio {
         // Then pulled along each axis, as the compositor pulls it - a
         // picture, that is. A title's box is its style's, and the compositor
         // never stretches one; see titles.rs.
-        // https://github.com/jub0t/Concat/issues/119
+        // https://github.com/shantonda/sjcut/issues/119
         let (w, h) = if clip.kind == model::ClipKind::Text {
             (w, h)
         } else {
@@ -383,7 +383,7 @@ impl Studio {
             }
         } else if (grip == 5 || grip == 7) && clip.kind == model::ClipKind::Text {
             // And the top and bottom grips size its box, never its glyphs.
-            // https://github.com/jub0t/Concat/issues/119
+            // https://github.com/shantonda/sjcut/issues/119
             Gesture::TextHeight {
                 clip: id.to_owned(),
                 centre,
@@ -825,7 +825,7 @@ impl Studio {
             // its constant - see `write_keyable` - so the keys the gesture
             // put on the echo have to be committed too, or the picture
             // snaps back to the ride the document still holds.
-            // https://github.com/jub0t/Concat/issues/228
+            // https://github.com/shantonda/sjcut/issues/228
             commands.extend(key_commands(&id, before, after));
             // A mask's grips move its numbers that hold still.
             if after.mask != before.mask {

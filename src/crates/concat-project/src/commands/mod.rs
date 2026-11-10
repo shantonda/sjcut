@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
-// SPDX-FileCopyrightText: 2026 Jareer Abdullah and Concat contributors
+// SPDX-FileCopyrightText: 2026 SJCut Contributors
 
 //! Every edit operation, as data.
 //!
@@ -613,7 +613,7 @@ pub enum Command {
         /// (the in-point moves, the start does not) and moves every later
         /// clip by what was cut or restored, so the trimmed clip and the
         /// one behind it stay touching. False trims the clip alone.
-        /// https://github.com/jub0t/Concat/issues/106
+        /// https://github.com/shantonda/sjcut/issues/106
         #[serde(default)]
         ripple: bool,
     },
@@ -710,7 +710,7 @@ pub enum Command {
         /// stays where it is, so a picture going from one lane does not
         /// pull the sound on another - the magnetic track, which is
         /// what was asked for. False leaves the hole.
-        /// https://github.com/jub0t/Concat/issues/106
+        /// https://github.com/shantonda/sjcut/issues/106
         #[serde(default)]
         ripple: bool,
     },
@@ -930,7 +930,7 @@ pub enum Command {
     /// video-range file tagged full, which crushes its shadows. Reaches
     /// every clip of the media, on every timeline, in the monitor and the
     /// export alike. An unknown id is a no-op.
-    /// https://github.com/jub0t/Concat/issues/103
+    /// https://github.com/shantonda/sjcut/issues/103
     SetMediaColorRange {
         /// The bin item.
         media_id: String,

@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
-// SPDX-FileCopyrightText: 2026 Jareer Abdullah and Concat contributors
+// SPDX-FileCopyrightText: 2026 SJCut Contributors
 
 import { I18n } from "../i18n.slint";
 import { Theme } from "../theme/theme.slint";
@@ -57,7 +57,7 @@ export component TextPanel inherits VerticalLayout {
 
     /// Several titles selected together: every knob writes to all of them
     /// and the words, each title's own, are not offered.
-    /// https://github.com/jub0t/Concat/issues/224
+    /// https://github.com/shantonda/sjcut/issues/224
     property <bool> batch: root.selected.batch > 1;
 
     // Local editing state, seeded rather than bound — see the note on
@@ -219,7 +219,7 @@ export component TextPanel inherits VerticalLayout {
                     // selected the other, so the blur wrote those words onto
                     // it. The field is reseeded with each title's words, and
                     // the blur writes only to the title it was typed for.
-                    // https://github.com/jub0t/Concat/issues/139
+                    // https://github.com/shantonda/sjcut/issues/139
                     property <string> clip-id: root.selected.id;
                     property <string> typed-for;
                     changed clip-id => {

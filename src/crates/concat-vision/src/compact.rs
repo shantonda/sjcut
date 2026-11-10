@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
-// SPDX-FileCopyrightText: 2026 Jareer Abdullah
+// SPDX-FileCopyrightText: 2026 SJCut Contributors
 
 //! The Enhance model's weights, read out of its ONNX file for a GPU of our
 //! own to run.

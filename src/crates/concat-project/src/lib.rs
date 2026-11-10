@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
-// SPDX-FileCopyrightText: 2026 Jareer Abdullah and Concat contributors
+// SPDX-FileCopyrightText: 2026 SJCut Contributors
 
 //! The edit itself, owned by the engine.
 //!
@@ -1032,7 +1032,7 @@ mod tests {
         assert_eq!(start_of(&editor, &next[0]), 20.0);
     }
 
-    // ── ripple delete: https://github.com/jub0t/Concat/issues/106 ──
+    // ── ripple delete: https://github.com/shantonda/sjcut/issues/106 ──
 
     fn unlink(editor: &mut Editor) {
         let timeline_id = editor.project().active().id.clone();
@@ -1285,7 +1285,7 @@ mod tests {
         }
     }
 
-    // ── magnetic trim: https://github.com/jub0t/Concat/issues/106 ──
+    // ── magnetic trim: https://github.com/shantonda/sjcut/issues/106 ──
 
     fn trim(clip_id: &str, edge: TrimEdge, delta: f64, ripple: bool) -> Command {
         Command::TrimClip {
@@ -1580,7 +1580,7 @@ mod tests {
 
     /// A document from before the box had a height reads as no height,
     /// and a hand-edited one cannot make it negative or not a number.
-    /// https://github.com/jub0t/Concat/issues/119
+    /// https://github.com/shantonda/sjcut/issues/119
     #[test]
     fn a_text_style_without_a_box_height_reads_as_the_words_own() {
         let style: TextStyle =
@@ -3919,7 +3919,7 @@ mod tests {
 
     /// A media item's colour range is set, saved, cleared, and undone
     /// like any edit; an unknown item is a no-op that records nothing.
-    /// https://github.com/jub0t/Concat/issues/103
+    /// https://github.com/shantonda/sjcut/issues/103
     #[test]
     fn a_medias_colour_range_is_an_undoable_edit_that_round_trips() {
         use crate::model::ColorRange;
@@ -5918,7 +5918,7 @@ mod tests {
     }
 
     // ── Delete Left / Delete Right (Q / W) ──
-    // https://github.com/jub0t/Concat/issues/400
+    // https://github.com/shantonda/sjcut/issues/400
 
     fn span(editor: &Editor, id: &str) -> (f64, f64, f64) {
         let clip = editor.project().active().clip(id).expect("clip");

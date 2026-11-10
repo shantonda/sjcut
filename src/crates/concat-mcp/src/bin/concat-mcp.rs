@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
-// SPDX-FileCopyrightText: 2026 Jareer Abdullah
+// SPDX-FileCopyrightText: 2026 SJCut Contributors
 
 //! The MCP server on its own, for development and the end-to-end test.
 //! What ships is the same server inside the app: `concat --mcp`.

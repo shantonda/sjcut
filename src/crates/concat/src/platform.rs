@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
-// SPDX-FileCopyrightText: 2026 Jareer Abdullah and Concat contributors
+// SPDX-FileCopyrightText: 2026 SJCut Contributors
 
 //! What the window asks of the platform it runs on.
 //!
@@ -55,7 +55,7 @@ pub fn set_ui_scale(percent: Option<u32>) {
 /// dispatch here changes; this runs when the window first shows, when the
 /// choice changes, and after every move to a monitor of another scale. A
 /// SLINT_SCALE_FACTOR set by hand still wins, and then nothing is done.
-/// https://github.com/jub0t/Concat/issues/320
+/// https://github.com/shantonda/sjcut/issues/320
 #[cfg(not(target_os = "android"))]
 pub fn apply_ui_scale(window: &slint::Window) {
     use slint::winit_030::WinitWindowAccessor;
@@ -519,8 +519,8 @@ pub fn select_backend(
     // decorations off is the Slint window's `no-frame` (app.slint), which
     // the winit backend re-applies after the window is made. On Wayland
     // without it GNOME's bar came back above the strip:
-    // https://github.com/jub0t/Concat/issues/97
-    // https://github.com/jub0t/Concat/issues/145
+    // https://github.com/shantonda/sjcut/issues/97
+    // https://github.com/shantonda/sjcut/issues/145
     //
     // None of it for the phone shell shown on a desk: that has no strip of
     // its own, so the platform's title bar stays, buttons and all, above
@@ -565,7 +565,7 @@ pub fn select_backend(
 /// double-clicked build has: on Windows a GUI subsystem binary has no
 /// standard error, and the app was exiting with the reason written to
 /// nowhere. The log file is named so the reader has something to attach.
-/// https://github.com/jub0t/Concat/issues/135
+/// https://github.com/shantonda/sjcut/issues/135
 pub fn report_startup_failure(error: &str) {
     #[cfg(not(any(target_os = "android", target_os = "ios")))]
     {
@@ -745,7 +745,7 @@ pub fn pick_folder(title: &str, start: &str) -> Option<PathBuf> {
 /// default, `<Desktop>/Concat`, is not made until the first project is, and
 /// GNOME's chooser (Nautilus, behind the portal) fails on a folder that is
 /// not there, where GTK's quietly opens elsewhere.
-/// https://github.com/jub0t/Concat/issues/331
+/// https://github.com/shantonda/sjcut/issues/331
 #[cfg(not(any(target_os = "android", target_os = "ios")))]
 fn existing_folder(start: &str) -> Option<&std::path::Path> {
     std::path::Path::new(start)

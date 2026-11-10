@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
-// SPDX-FileCopyrightText: 2026 Jareer Abdullah and Concat contributors
+// SPDX-FileCopyrightText: 2026 SJCut Contributors
 
 //! The keyboard: which chord does what, as one table Rust owns.
 //!
@@ -99,7 +99,7 @@ pub const ACTIONS: &[Action] = &[
     },
     // Shift closes the gap the deletion leaves — the ripple delete every
     // other editor has, on the key they all use for it.
-    // https://github.com/jub0t/Concat/issues/106
+    // https://github.com/shantonda/sjcut/issues/106
     Action {
         id: "ripple-delete",
         defaults: &["shift+delete", "shift+backspace"],
@@ -110,7 +110,7 @@ pub const ACTIONS: &[Action] = &[
     },
     // CapCut's Delete Left and Delete Right, on its keys: the clip under
     // the playhead loses everything before it (Q) or after it (W).
-    // https://github.com/jub0t/Concat/issues/400
+    // https://github.com/shantonda/sjcut/issues/400
     Action {
         id: "delete-left",
         defaults: &["q"],

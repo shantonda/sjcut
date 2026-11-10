@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
-// SPDX-FileCopyrightText: 2026 Jareer Abdullah and Concat contributors
+// SPDX-FileCopyrightText: 2026 SJCut Contributors
 
 //! The editor window as a program: what a desktop or an iPhone launches.
 //! Everything is in the library; see `lib.rs`.
@@ -67,7 +67,7 @@ fn main() -> Result<(), slint::PlatformError> {
     concat::open_logging(None);
     // A failure here is the one this binary would otherwise swallow: with
     // no console, the runtime's "Error: ..." on standard error is lost.
-    // https://github.com/jub0t/Concat/issues/135
+    // https://github.com/shantonda/sjcut/issues/135
     let launch = launch
         .map_err(slint::PlatformError::Other)
         .inspect_err(concat::report_startup_failure)?;

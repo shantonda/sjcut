@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
-// SPDX-FileCopyrightText: 2026 Jareer Abdullah and Concat contributors
+// SPDX-FileCopyrightText: 2026 SJCut Contributors
 //! Keyframes.
 
 use super::*;
@@ -2119,7 +2119,7 @@ impl Studio {
     /// it read as a property of the cut. Auto is the file's tag, and the
     /// codec's convention where there is none; see
     /// `concat_media::ColorRange::implied`.
-    /// https://github.com/jub0t/Concat/issues/103
+    /// https://github.com/shantonda/sjcut/issues/103
     fn media_menu(&self, id: &str) -> Vec<MenuItemData> {
         let Some(item) = self.project().media_by_id(id) else {
             return Vec::new();

@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
-// SPDX-FileCopyrightText: 2026 Jareer Abdullah and Concat contributors
+// SPDX-FileCopyrightText: 2026 SJCut Contributors
 
 import { Theme } from "../theme/theme.slint";
 import { Pane } from "pane.slint";
@@ -498,7 +498,7 @@ export component TimelinePane inherits Rectangle {
             // cut's length with a screen's worth of room after it, and
             // never less than wherever the view has already been scrolled
             // to, so the thumb cannot vanish from under a drag.
-            // https://github.com/jub0t/Concat/issues/237
+            // https://github.com/shantonda/sjcut/issues/237
             ThinHScrollbar {
                 x: lanes.x;
                 y: parent.height - self.height;

@@ -2,12 +2,12 @@
 
 ## FFmpeg
 
-Concat links FFmpeg's libraries - libavformat, libavcodec, libavfilter,
+SJCut links FFmpeg's libraries - libavformat, libavcodec, libavfilter,
 libavutil, libswscale and libswresample - through the `ffmpeg-the-third`
 crate, as shared libraries that ship beside it and can be replaced. The
 Slint app spawns no `ffmpeg` or `ffprobe` process.
 
-Every FFmpeg Concat ships is LGPL, with nothing GPL or non-free in it: no
+Every FFmpeg SJCut ships is LGPL, with nothing GPL or non-free in it: no
 x264, x265 or fdk-aac. H.264, HEVC and AAC are encoded by the platform's own
 encoders (VideoToolbox and AudioToolbox, Media Foundation and the GPUs'
 encoders, MediaCodec). Which build a binary carries:
@@ -23,7 +23,7 @@ encoders, MediaCodec). Which build a binary carries:
   (https://github.com/BtbN/FFmpeg-Builds), LGPL-3.0-or-later, which links
   the same libraries and libaom (BSD-2-Clause), the GPUs' encoder headers,
   OpenH264 (BSD-2-Clause, https://github.com/cisco/openh264) and Kvazaar
-  (BSD-3-Clause, https://github.com/ultravideo/kvazaar). Concat encodes
+  (BSD-3-Clause, https://github.com/ultravideo/kvazaar). SJCut encodes
   H.264 with OpenH264 only where nothing of the platform's does - Linux
   without a GPU encoder, Windows without Media Foundation's - and HEVC with
   Kvazaar only where no GPU encoder or Media Foundation's takes it.
@@ -40,11 +40,11 @@ FFmpeg source code: https://ffmpeg.org/download.html
 
 Transcription compiles whisper.cpp (https://github.com/ggml-org/whisper.cpp,
 MIT) and ggml into the app through the `whisper-rs` crate. Whisper models
-originate at https://huggingface.co/ggerganov/whisper.cpp (MIT); Concat
+originate at https://huggingface.co/ggerganov/whisper.cpp (MIT); SJCut
 mirrors them and downloads them on demand from that mirror, and never
 bundles them. See "The model mirror" below.
 
-The one model Concat does bundle is Silero VAD v6.2.0 in whisper.cpp's
+The one model SJCut does bundle is Silero VAD v6.2.0 in whisper.cpp's
 format (`ggml-silero-v6.2.0.bin`, from https://huggingface.co/ggml-org/whisper-vad,
 MIT; Silero VAD itself is MIT, https://github.com/snakers4/silero-vad,
 Copyright (c) 2020-present Silero Team). It finds where the speech is, so
@@ -57,11 +57,11 @@ The `concat` crate (`src/crates/concat`) builds against
 **any one** of three licences, at the user's choice: a Royalty-free licence, a
 paid commercial licence, or **GNU GPL-3.0-only**.
 
-**Concat as published here, under AGPL-3.0-or-later, uses Slint under the
-GPL-3.0-only option.** Builds of Concat distributed under a commercial licence
+**SJCut as published here, under AGPL-3.0-or-later, uses Slint under the
+GPL-3.0-only option.** Builds of SJCut distributed under a commercial licence
 from its owner use Slint under the Slint Royalty-free Desktop, Mobile, and Web
 Applications License 2.0, which the owner accepted on 3 November 2026, with
-Slint's attribution badge on the page Concat is downloaded from.
+Slint's attribution badge on the page SJCut is downloaded from.
 
 For the GPL-3.0-only option, section 13 of the GPL-3.0 exists for exactly this
 combination:
@@ -72,8 +72,8 @@ combination:
 > the resulting work.
 
 So the combined binary is conveyable. Slint's portion remains GPL-3.0-only,
-Concat's portion remains AGPL-3.0-or-later, and the AGPL's section 13 network
-requirement applies to the combination as a whole. Anyone forking Concat takes
+SJCut's portion remains AGPL-3.0-or-later, and the AGPL's section 13 network
+requirement applies to the combination as a whole. Anyone forking SJCut takes
 Slint under the GPL-3.0 with it; the Royalty-free licence is the owner's, and
 does not pass to a fork.
 
@@ -82,7 +82,7 @@ with winit and their transitive crates, which are
 predominantly MIT/Apache-2.0/BSD licensed. The Skia renderer crate,
 `i-slint-renderer-skia`, is built from a patched copy in
 `src/patches/i-slint-renderer-skia`; its changes are listed in
-`src/patches/README.md` and marked `Concat:` in the source.
+`src/patches/README.md` and marked `SJCut:` in the source.
 `cargo tree -p concat` gives the resolved set of any given build.
 
 ## Fonts
@@ -161,20 +161,20 @@ https://huggingface.co/ResembleAI/chatterbox-turbo-ONNX, Resemble AI), driven
 through ONNX Runtime directly, from Resemble's own ONNX export, downloaded on
 demand from the model mirror. Its GPT-2 tokenizer is read by the tokenizers
 crate (Apache-2.0). Resemble's Python package stamps a Perth watermark on what
-it speaks; the ONNX pipeline carries no such step and Concat adds none, which
+it speaks; the ONNX pipeline carries no such step and SJCut adds none, which
 MIT permits and which anyone passing the sound off as a person's should know
 is not there. On a phone, text to speech is the phone's own system voice, which
-Concat neither ships nor downloads.
+SJCut neither ships nor downloads.
 
 Chatterbox reads in the voice of a short recording. Its four stock voices
 ship inside the app in `src/crates/concat-speech/voices/`: ten seconds each
 from LibriVox readings by Elizabeth Klett, Mark F. Smith, Ruth Golding and
 Bob Neufeld (https://librivox.org). LibriVox readers dedicate their
 recordings to the public domain, and archive.org files each of these under
-a public-domain licence; `voices/README.md` names each source file. Concat
+a public-domain licence; `voices/README.md` names each source file. SJCut
 credits the readers though nothing requires it.
 Reading in the voice of any other recording is a use the person doing it is
-answerable for: Concat offers it for the narrator's own voice, and no one's
+answerable for: SJCut offers it for the narrator's own voice, and no one's
 voice should be cloned without their consent.
 
 Releases up to 0.2.8 also used the sherpa-onnx runtime (Apache-2.0), which
@@ -203,8 +203,8 @@ DLLs the program and its DLLs import - `vcruntime140.dll`,
 `vcruntime140_1.dll`, `msvcp140.dll` and their kin, whichever the build
 finds imported - copied unmodified from the redistributable folder of the
 Visual Studio that built the release (`VC\Redist\MSVC\<version>\<arch>\
-Microsoft.VC14x.CRT`). They are Microsoft's, not Concat's, and are not
-covered by Concat's licence: they are redistributed under the terms
+Microsoft.VC14x.CRT`). They are Microsoft's, not SJCut's, and are not
+covered by SJCut's licence: they are redistributed under the terms
 Microsoft sets for them, the Microsoft Software License Terms for Visual
 Studio and its list of distributable code (for Visual Studio 2022,
 https://learn.microsoft.com/visualstudio/releases/2022/redistribution),
@@ -234,7 +234,7 @@ except the first:
   (Apache-2.0), downloaded on first use. The brushes' model.
 
 Downloaded models live in the app's data directory under `cutout-models`
-and are never bundled; the three that are downloaded come from Concat's own
+and are never bundled; the three that are downloaded come from SJCut's own
 mirror of the sources named above, described below. They are all run by
 ONNX Runtime
 (https://github.com/microsoft/onnxruntime, MIT) through the `ort` crate
@@ -245,7 +245,7 @@ iOS, NNAPI on Android. How each platform carries the runtime is under
 
 ## The model mirror
 
-Every downloaded model named above is mirrored onto a release of Concat's own
+Every downloaded model named above is mirrored onto a release of SJCut's own
 repository, and the app fetches it from there; the upstream each was
 obtained from is the fallback and is named above in every case. The table of
 what is mirrored, and the digest each download is checked against, is
@@ -259,7 +259,7 @@ Video Matting. The Kokoro (Apache-2.0) and Pocket TTS (CC-BY-4.0) bundles
 stay on the mirror for releases up to 0.2.8, which download them. Those terms are met
 by the attributions above and by the licence files each mirrored archive
 carries; a mirrored file is a verbatim copy, never a modification. Nothing
-in the mirror is bundled with the app, and Concat claims no rights over any
+in the mirror is bundled with the app, and SJCut claims no rights over any
 of it.
 
 ## Effect preview photograph

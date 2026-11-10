@@ -7,7 +7,7 @@ the change, and read it again.
 
 ## i-slint-renderer-skia 1.18.1
 
-Text on a 1x Windows screen read soft and grey (jub0t/concat#278). Three
+Text on a 1x Windows screen read soft and grey (shantonda/sjcut#278). Three
 changes, all marked `Concat:` in the source:
 
 - `itemrenderer.rs`, `draw_glyph_run`: glyphs are positioned on whole
@@ -44,7 +44,7 @@ Nothing else differs from the published crate.
 whisper.cpp's Rust build. The published build script builds whisper and
 ggml as static libraries only, so ggml's CPU kernels are compiled for one
 instruction set: AVX2 crashed Sandy and Ivy Bridge machines at launch
-(jub0t/concat#193), and AVX alone made transcription some eight times
+(shantonda/sjcut#193), and AVX alone made transcription some eight times
 slower everywhere else (#388). One change, marked `Concat:` in `build.rs`:
 
 - `GGML_BACKEND_DL=ON` in the environment builds whisper, ggml and

@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
-// SPDX-FileCopyrightText: 2026 Jareer Abdullah and Concat contributors
+// SPDX-FileCopyrightText: 2026 SJCut Contributors
 
 //! The window's state, and how it is published into Slint.
 //!
@@ -316,7 +316,7 @@ fn even(value: u32) -> u32 {
 /// anything else - a decimal is for reading, and export must never be
 /// handed one. The rates cameras and screens run at, from a stop-motion
 /// ten to a game capture's sixty; anything else is typed in as a custom
-/// rate. https://github.com/jub0t/Concat/issues/199
+/// rate. https://github.com/shantonda/sjcut/issues/199
 pub const RATES: [(&str, i64, i64); 11] = [
     ("10", 10, 1),
     ("20", 20, 1),
@@ -547,7 +547,7 @@ pub enum Gesture {
     /// the same terms as [`Gesture::TextWidth`] pulls the width. Before
     /// this the two grips fell through to a stretch, and a caption pulled
     /// to fit came out with its glyphs squashed.
-    /// https://github.com/jub0t/Concat/issues/119
+    /// https://github.com/shantonda/sjcut/issues/119
     TextHeight {
         clip: String,
         centre: (f64, f64),

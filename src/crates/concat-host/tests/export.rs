@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
-// SPDX-FileCopyrightText: 2026 Jareer Abdullah and Concat contributors
+// SPDX-FileCopyrightText: 2026 SJCut Contributors
 
 //! Exporting a project end to end, the way the window does it: media
 //! imported by probing, every edit applied as a command through a session,
@@ -1351,7 +1351,7 @@ fn an_hlg_timeline_exports_as_hdr_or_sdr() {
 /// of that second; named limited, or cleared, it reads true again. And an
 /// export written full range is tagged so and plays its seconds back
 /// true, because the tag the encoder wrote is the tag the decoder reads.
-/// https://github.com/jub0t/Concat/issues/103
+/// https://github.com/shantonda/sjcut/issues/103
 #[test]
 fn a_colour_range_named_on_the_media_reaches_the_export() {
     let scratch = Scratch::new("range");

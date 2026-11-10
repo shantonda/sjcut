@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
-// SPDX-FileCopyrightText: 2026 Jareer Abdullah and Concat contributors
+// SPDX-FileCopyrightText: 2026 SJCut Contributors
 //! Placing things on the timeline.
 
 use super::*;
@@ -343,7 +343,7 @@ impl Studio {
     /// lands on every one of them as one undo step (#470), which is what a
     /// separate Apply to all button stood in for. Clips on locked lanes are
     /// left out; kinds selected together have no inspector in common.
-    /// https://github.com/jub0t/Concat/issues/224
+    /// https://github.com/shantonda/sjcut/issues/224
     pub fn edit_targets(&self) -> Vec<String> {
         if let Some(id) = self.sole_selection() {
             return vec![id];

@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
-// SPDX-FileCopyrightText: 2026 Jareer Abdullah
+// SPDX-FileCopyrightText: 2026 SJCut Contributors
 
 //! Where the app keeps what belongs to this machine rather than to a
 //! project: the recents list, remembered settings, downloaded models.
@@ -235,7 +235,7 @@ enum Convention {
 /// where `Library` is the app's own and the top of the container is not a
 /// place the app may make folders. It used to fall through to the XDG branch, and the
 /// settings, the recents and the log went to `~/.config` and
-/// `~/.local/share`. https://github.com/jub0t/Concat/issues/299
+/// `~/.local/share`. https://github.com/shantonda/sjcut/issues/299
 fn convention(os: &str) -> Convention {
     match os {
         "macos" | "ios" => Convention::Apple,

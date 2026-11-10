@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
-// SPDX-FileCopyrightText: 2026 Jareer Abdullah
+// SPDX-FileCopyrightText: 2026 SJCut Contributors
 
 //! Concat for AI agents: a Model Context Protocol server over standard
 //! input and output, shipped inside the app as `concat --mcp`.

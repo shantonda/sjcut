@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
-// SPDX-FileCopyrightText: 2026 Jareer Abdullah and Concat contributors
+// SPDX-FileCopyrightText: 2026 SJCut Contributors
 
 //! What crosses the API boundary: a [`Request`] in, a [`Response`] out,
 //! and [`Event`]s along the way.
@@ -293,7 +293,7 @@ pub struct ExportSpec {
     /// "limited" (16-235, what every player and YouTube expect) or "full"
     /// (0-255, for screen content bound for a PC player that reads the
     /// tag). Limited when absent.
-    /// https://github.com/jub0t/Concat/issues/103
+    /// https://github.com/shantonda/sjcut/issues/103
     #[serde(default)]
     pub color_range: Option<String>,
     /// For an HDR timeline: written as HDR, its own HLG or PQ in ten bits

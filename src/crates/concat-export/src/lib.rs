@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
-// SPDX-FileCopyrightText: 2026 Jareer Abdullah and Concat contributors
+// SPDX-FileCopyrightText: 2026 SJCut Contributors
 
 //! Rendering a timeline to a file.
 //!
@@ -478,7 +478,7 @@ pub struct ExportRequest {
     /// The levels the file is written in and tagged with, by name:
     /// "limited" (16-235, what every player expects) or "full" (0-255).
     /// Limited when a request does not say.
-    /// https://github.com/jub0t/Concat/issues/103
+    /// https://github.com/shantonda/sjcut/issues/103
     #[serde(default, deserialize_with = "range_by_name")]
     pub color_range: concat_media::ColorRange,
     /// What the timeline is output in. SDR when a request does not say.

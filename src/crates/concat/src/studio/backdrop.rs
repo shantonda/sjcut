@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
-// SPDX-FileCopyrightText: 2026 Jareer Abdullah
+// SPDX-FileCopyrightText: 2026 SJCut Contributors
 
 //! The background behind the main picture, and Fit and Fill: the panels'
 //! side of `model::Background` and `Command::FrameClip`. What is drawn,

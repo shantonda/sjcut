@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
-// SPDX-FileCopyrightText: 2026 Jareer Abdullah and Concat contributors
+// SPDX-FileCopyrightText: 2026 SJCut Contributors
 
 //! Titles and shapes, rendered and remembered.
 //!
@@ -291,7 +291,7 @@ impl Titles {
                     // 0.2.2's side grips wrote a stretch onto title clips
                     // to make a long caption fit, and honouring it here
                     // kept those captions squashed after the wrap arrived.
-                    // https://github.com/jub0t/Concat/issues/119
+                    // https://github.com/shantonda/sjcut/issues/119
                     // A shape is pulled: that is how a square becomes
                     // the rectangle that was wanted.
                     stretch_x: match painting {
@@ -729,7 +729,7 @@ mod tests {
     /// A title clip carrying a stretch - what 0.2.2's side grips wrote to
     /// make a long caption fit - comes back unstretched: the words wrap
     /// now, and a squashed glyph was never wanted.
-    /// https://github.com/jub0t/Concat/issues/119
+    /// https://github.com/shantonda/sjcut/issues/119
     #[test]
     fn a_title_is_never_stretched_whatever_its_clip_says() {
         let dirs = scratch("title");

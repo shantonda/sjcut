@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
-// SPDX-FileCopyrightText: 2026 Jareer Abdullah
+// SPDX-FileCopyrightText: 2026 SJCut Contributors
 
 //! What Settings > About reports about this machine and this build.
 
@@ -93,7 +93,7 @@ pub fn system_facts() -> Vec<(String, String)> {
         // The adapter the window and the monitor draw on, and whether it is
         // a GPU at all. A machine that fell back to WARP looks like any
         // other in the window, and the difference was the whole story of
-        // https://github.com/jub0t/Concat/issues/135
+        // https://github.com/shantonda/sjcut/issues/135
         (
             t("sysinfo.graphics"),
             crate::gpu::adapter_description().unwrap_or("none").into(),

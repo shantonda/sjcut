@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
-// SPDX-FileCopyrightText: 2026 Jareer Abdullah and Concat contributors
+// SPDX-FileCopyrightText: 2026 SJCut Contributors
 
 import { I18n } from "../i18n.slint";
 import { Theme, SegmentedControl } from "../primitives/primitives.slint";
@@ -701,7 +701,7 @@ export component ConfigPane inherits Rectangle {
                         // highlight then stayed where it was pressed while
                         // the tab, the selection or a jump moved the section
                         // under it. So it is set again whenever the section
-                        // shown changes. https://github.com/jub0t/Concat/issues/250
+                        // shown changes. https://github.com/shantonda/sjcut/issues/250
                         property <int> shown: Math.max(0, Math.min(root.section, root.sections.length - 1));
                         current: self.shown;
                         changed shown => { self.current = self.shown; }

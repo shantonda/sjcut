@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
-// SPDX-FileCopyrightText: 2026 Jareer Abdullah
+// SPDX-FileCopyrightText: 2026 SJCut Contributors
 
 //! A shape clip painted: a figure and its paint on a transparent canvas the
 //! frame's size, for the compositor to place as it places a title (see the

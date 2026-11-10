@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
-// SPDX-FileCopyrightText: 2026 Jareer Abdullah
+// SPDX-FileCopyrightText: 2026 SJCut Contributors
 
 //! The two things UniFFI cannot carry: the app's `Context` (which cpal's
 //! AAudio host reads through ndk-context to size its buffers) and a

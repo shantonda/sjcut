@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
-// SPDX-FileCopyrightText: 2026 Jareer Abdullah and Concat contributors
+// SPDX-FileCopyrightText: 2026 SJCut Contributors
 //! Edits from the menus and the tray.
 
 use super::*;
@@ -39,7 +39,7 @@ impl Studio {
     /// notice asks for one rather than guessing - a caption over the
     /// picture is as much "the clip" as the picture is. The lane closes
     /// behind the cut only on a magnetic timeline, as any trim's does.
-    /// https://github.com/jub0t/Concat/issues/400
+    /// https://github.com/shantonda/sjcut/issues/400
     pub fn delete_to_playhead(&mut self, side: PlayheadSide) {
         let at = f64::from(self.playhead);
         let edge = f64::from(MIN_DURATION);
@@ -112,7 +112,7 @@ impl Studio {
     /// and put in the bin, selected, so it can go straight onto a lane as
     /// a freeze frame. The dialog opens on the next turn of the loop, as
     /// every dialog reached from a right-click menu must.
-    /// https://github.com/jub0t/Concat/issues/238
+    /// https://github.com/shantonda/sjcut/issues/238
     pub fn save_frame_as(&mut self) {
         if self.playing {
             self.pause();
@@ -276,7 +276,7 @@ impl Studio {
     /// The split tool pressed clip `id` at `seconds`: one cut, on the
     /// frame nearest the press, unless it is within a frame of either end
     /// or the lane is locked.
-    /// https://github.com/jub0t/Concat/issues/241
+    /// https://github.com/shantonda/sjcut/issues/241
     pub fn split_clip_at(&mut self, id: &str, seconds: f32) {
         let Some(clip) = self.clip(id).cloned() else {
             return;
@@ -332,7 +332,7 @@ impl Studio {
 
     /// Ripple delete (⇧⌫): the selection goes and each lane closes behind
     /// it, so a rough cut needs no dragging-left after every deletion.
-    /// https://github.com/jub0t/Concat/issues/106
+    /// https://github.com/shantonda/sjcut/issues/106
     pub fn ripple_delete_selected(&mut self) {
         if self.selected_transition().is_some() {
             self.remove_transition();

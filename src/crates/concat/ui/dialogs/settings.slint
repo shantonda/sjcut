@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
-// SPDX-FileCopyrightText: 2026 Jareer Abdullah and Concat contributors
+// SPDX-FileCopyrightText: 2026 SJCut Contributors
 
 import { I18n } from "../i18n.slint";
 import { Theme } from "../theme/theme.slint";
@@ -916,7 +916,7 @@ export component SettingsDialog inherits Modal {
                 // most days; Debug and Everything are for when a report
                 // asks, and the file grows faster for them. CONCAT_LOG in
                 // the environment overrides this for one run.
-                // https://github.com/jub0t/Concat/issues/223
+                // https://github.com/shantonda/sjcut/issues/223
                 DialogSection {
                     ruled: false;
                     title: I18n.t("settings.logLevel");
@@ -971,7 +971,7 @@ export component SettingsDialog inherits Modal {
                 // Off, a delete leaves its hole and a trim moves one edge.
                 // On, the lane closes up behind either - the magnetic
                 // timeline of the mainstream editors, asked for in
-                // https://github.com/jub0t/Concat/issues/106
+                // https://github.com/shantonda/sjcut/issues/106
                 DialogSection {
                     ruled: false;
                     title: I18n.t("common.magneticTimeline");
@@ -1061,7 +1061,7 @@ export component SettingsDialog inherits Modal {
                 // anyway. The backend takes it as a multiplier rather than as
                 // a property, so Rust hands the window a scale-factor event
                 // to apply it (lib.rs, `on_settings_scale_changed`).
-                // https://github.com/jub0t/Concat/issues/320
+                // https://github.com/shantonda/sjcut/issues/320
                 if !root.phone: DialogSection {
                     ruled: false;
                     first: true;

@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
-// SPDX-FileCopyrightText: 2026 Jareer Abdullah and Concat contributors
+// SPDX-FileCopyrightText: 2026 SJCut Contributors
 
 //! Concat's editor window, in Slint.
 //!
@@ -137,7 +137,7 @@ pub fn open_logging(extra: Option<Box<dyn log::Log>>) {
 /// what a packaged GUI build has no console for. Each entry point calls
 /// this on the error before letting it go, so the reason is in the log and
 /// in a dialog, not only in a console that was never there.
-/// https://github.com/jub0t/Concat/issues/135
+/// https://github.com/shantonda/sjcut/issues/135
 pub fn report_startup_failure(error: &slint::PlatformError) {
     let error = error.to_string();
     log::error!("could not start: {error}");
@@ -201,13 +201,13 @@ const IDLE_FRAMES: usize = 96 * 1024 * 1024;
 fn start(project: Option<std::path::PathBuf>, smoke: bool) -> Result<(), slint::PlatformError> {
     // What Import and a finished export reach on an iPhone. Android's own
     // crate installs its; iOS runs this crate's binary, so it is here.
-    // https://github.com/jub0t/Concat/issues/332
+    // https://github.com/shantonda/sjcut/issues/332
     #[cfg(target_os = "ios")]
     ios::install();
 
     // The interface scale: a percent of the display's own, applied once
     // the window is up and kept through moves between monitors; see
-    // `platform::apply_ui_scale`. https://github.com/jub0t/Concat/issues/320
+    // `platform::apply_ui_scale`. https://github.com/shantonda/sjcut/issues/320
     if let Ok(dirs) = concat_host::AppDirs::locate() {
         let percent = prefs::Preferences::load(&dirs)
             .ui_scale
@@ -272,7 +272,7 @@ fn start(project: Option<std::path::PathBuf>, smoke: bool) -> Result<(), slint::
         // the system's terminate, past every close road, and `run` never
         // returns: the project is saved here or not at all. Every other way
         // out has released the session by now, so this does nothing there.
-        // https://github.com/jub0t/Concat/issues/437
+        // https://github.com/shantonda/sjcut/issues/437
         || {
             let terminating = std::cell::Cell::new(false);
             // Whether the studio was free to borrow: `stop_exports` borrows it.
@@ -403,7 +403,7 @@ fn start(project: Option<std::path::PathBuf>, smoke: bool) -> Result<(), slint::
     // The interface scale: the row on Settings > Appearance reads the index
     // off the Theme global, and the window was already made at the scale the
     // environment asked for above, so this only lines the two up.
-    // https://github.com/jub0t/Concat/issues/320
+    // https://github.com/shantonda/sjcut/issues/320
     app.global::<Theme>()
         .set_ui_scale(studio.prefs.scale_index() as i32);
 
@@ -2076,7 +2076,7 @@ fn start(project: Option<std::path::PathBuf>, smoke: bool) -> Result<(), slint::
     // interface grows within the window rather than being clipped by it.
     // Nothing is rebuilt; the window keeps its size on screen. The row
     // reads its value off the Theme global, so that is set here too.
-    // https://github.com/jub0t/Concat/issues/320
+    // https://github.com/shantonda/sjcut/issues/320
     app.on_settings_scale_changed({
         move |index| {
             log::info!("settings: ui scale {index}");

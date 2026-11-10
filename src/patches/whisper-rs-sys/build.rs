@@ -107,7 +107,7 @@ fn main() {
     // time, picking the best one the CPU can run - with
     // GGML_CPU_ALL_VARIANTS=ON, one per x86_64 generation. That is how one
     // bundle runs AVX2 kernels on a Haswell and still starts on a Sandy
-    // Bridge (jub0t/concat#388, #193). The published build script only
+    // Bridge (shantonda/sjcut#388, #193). The published build script only
     // builds static libraries, so the switch was not there to turn.
     // Watched, because a library built the other way would link wrong.
     println!("cargo:rerun-if-env-changed=GGML_BACKEND_DL");

@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
-// SPDX-FileCopyrightText: 2026 Jareer Abdullah
+// SPDX-FileCopyrightText: 2026 SJCut Contributors
 
 //! The JSON-RPC 2.0 envelope: what a line transport - stdin, a socket -
 //! puts around a [`Request`], a [`Response`] and an [`Event`].

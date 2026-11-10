@@ -142,7 +142,7 @@
           # builder has, and rustc is killed part way through ("rustc was
           # terminated by a deadly signal"). Sixteen units keep every piece
           # a size a builder can hold; the thin LTO still joins them.
-          # https://github.com/jub0t/Concat/issues/225
+          # https://github.com/shantonda/sjcut/issues/225
           env.CARGO_PROFILE_RELEASE_CODEGEN_UNITS = "16";
 
           nativeBuildInputs = (nativeInputs pkgs) ++ [

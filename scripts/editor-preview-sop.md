@@ -38,5 +38,5 @@ editor window floating on a soft gradient card, built by
    pushing:
 
    ```sh
-   curl https://purge.jsdelivr.net/gh/jub0t/Concat@main/assets/editor.png
+   curl https://purge.jsdelivr.net/gh/shantonda/sjcut@main/assets/editor.png
    ```

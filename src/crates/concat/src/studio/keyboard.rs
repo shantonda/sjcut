@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
-// SPDX-FileCopyrightText: 2026 Jareer Abdullah and Concat contributors
+// SPDX-FileCopyrightText: 2026 SJCut Contributors
 //! The keyboard, and the menu's verbs.
 
 use super::*;
@@ -86,7 +86,7 @@ impl Studio {
     /// what came off: the lane it lands on may be a new one, out of view,
     /// and a detach that changed nothing anyone could see read as one that
     /// did nothing. One that cannot happen says why instead of nothing.
-    /// https://github.com/jub0t/Concat/issues/310
+    /// https://github.com/shantonda/sjcut/issues/310
     fn detach_audio(&mut self, clip: &Clip) {
         let has_audio = self
             .project()

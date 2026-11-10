@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
-// SPDX-FileCopyrightText: 2026 Jareer Abdullah and Concat contributors
+// SPDX-FileCopyrightText: 2026 SJCut Contributors
 
 //! The settings sheet: the preferences, the two model lists, and the API
 //! server's switch.
@@ -1095,7 +1095,7 @@ fn quit_for_switch(after: impl FnOnce() + Send + 'static) {
 /// library hands it out through its hasher's seed, spelled in hex.
 /// The log level row's choices, in the order the sheet lists them:
 /// errors only, warnings, normal, debug, everything.
-/// https://github.com/jub0t/Concat/issues/223
+/// https://github.com/shantonda/sjcut/issues/223
 const LOG_LEVELS: [log::LevelFilter; 5] = [
     log::LevelFilter::Error,
     log::LevelFilter::Warn,

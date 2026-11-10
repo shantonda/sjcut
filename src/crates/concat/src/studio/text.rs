@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
-// SPDX-FileCopyrightText: 2026 Jareer Abdullah and Concat contributors
+// SPDX-FileCopyrightText: 2026 SJCut Contributors
 //! Fonts, and the styled words of a title.
 
 use super::*;
@@ -297,7 +297,7 @@ impl Studio {
     /// and the one generated captions are set in: its family, weight,
     /// colours, stroke, shadow and background, never its words. Kept in
     /// the preferences, so it outlives the project.
-    /// https://github.com/jub0t/Concat/issues/224
+    /// https://github.com/shantonda/sjcut/issues/224
     pub fn use_title_style_for_new(&mut self) {
         let Some(mut style) = self
             .edit_targets()

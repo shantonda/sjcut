@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
-// SPDX-FileCopyrightText: 2026 Jareer Abdullah
+// SPDX-FileCopyrightText: 2026 SJCut Contributors
 
 //! The VU meters' feed: playback's peaks, thirty times a second, onto the
 //! Meters global, with the ballistics a meter needs - up at once, down at

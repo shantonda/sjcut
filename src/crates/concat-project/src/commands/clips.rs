@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
-// SPDX-FileCopyrightText: 2026 Jareer Abdullah and Concat contributors
+// SPDX-FileCopyrightText: 2026 SJCut Contributors
 
 //! Placing, moving and cutting clips: the edits that change what is on the timeline and when.
 //!
@@ -863,7 +863,7 @@ const JOIN_EPSILON: f64 = 1e-6;
 /// it would land in front of what was in front of it. A span reaching past
 /// the clip's start counts only up to it, and nothing is pulled before
 /// zero.
-/// https://github.com/jub0t/Concat/issues/106
+/// https://github.com/shantonda/sjcut/issues/106
 fn close_gaps(timeline: &mut Timeline, removed: &[(String, f64, f64)]) {
     let behind_a_span = |clip: &Clip| {
         removed

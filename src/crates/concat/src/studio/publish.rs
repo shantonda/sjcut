@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
-// SPDX-FileCopyrightText: 2026 Jareer Abdullah and Concat contributors
+// SPDX-FileCopyrightText: 2026 SJCut Contributors
 //! Notices, and publishing the state into Slint.
 
 use super::*;
@@ -415,7 +415,7 @@ impl Studio {
         editor.set_selected_count(self.selection.len() as i32);
         // The tray's undo and redo buttons grey out on these; the Edit menu
         // asks the session itself when it opens.
-        // https://github.com/jub0t/Concat/issues/154
+        // https://github.com/shantonda/sjcut/issues/154
         let (can_undo, can_redo) = self.session.as_ref().map_or((false, false), |session| {
             (session.can_undo(), session.can_redo())
         });
