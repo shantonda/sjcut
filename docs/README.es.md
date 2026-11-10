@@ -13,31 +13,17 @@
   <a href="https://github.com/shantonda/sjcut/releases"><img src="https://img.shields.io/github/downloads/shantonda/sjcut/total?style=flat&logo=github&logoColor=F8F8F8&label=Downloads&labelColor=212123&color=0568FD" alt="Total Downloads" /></a>
   <a href="https://github.com/shantonda/sjcut/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/shantonda/sjcut/ci.yml?style=flat&logo=githubactions&logoColor=F8F8F8&label=Build&labelColor=000000" alt="Build Status" /></a>
   <a href="https://github.com/shantonda/sjcut/releases"><img src="https://img.shields.io/badge/Version-0.2.9-0568FD?style=flat&logo=semver&logoColor=F8F8F8&labelColor=212123" alt="SJCut Version 0.2.9" /></a>
-  <a href="https://discord.gg/DVuPfpXfqP"><img src="https://img.shields.io/badge/Discord-Join%20the%20server-5865F2?style=flat&logo=discord&logoColor=F8F8F8&labelColor=000000" alt="Join SJCut Discord" /></a>
   <a href="../LICENSE"><img src="https://img.shields.io/badge/License-AGPL%20v3-0568FD?style=flat&logo=gnu&logoColor=F8F8F8&labelColor=212123" alt="License: AGPL-3.0-or-later" /></a>
 </p>
 
 <p align="center">
   <a href="https://www.star-history.com/shantonda/sjcut"><img src="https://api.star-history.com/badge?repo=shantonda/sjcut&type=rank" alt="Star History Rank" height="62" /></a>
-  <a href="https://trendshift.io/repositories/191379?utm_source=trendshift-badge&amp;utm_medium=badge&amp;utm_campaign=badge-trendshift-191379" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/trendshift/repositories/191379/daily?language=Rust" alt="shantonda%2Fsjcut | Trendshift" width="250" height="55"/></a>
-  <a href="https://concat.standalones.org/#download"><img src="../assets/download_button.svg" alt="Download SJCut" width="251" /></a>
+  <a href="https://github.com/shantonda/sjcut/releases"><img src="../assets/download_button.svg" alt="Download SJCut" width="251" /></a>
 </p>
 
 [🇬🇧 English](../README.md) · [🇩🇪 Deutsch](README.de.md) · **🇪🇸 Español** · [🇫🇷 Français](README.fr.md) · [🇮🇹 Italiano](README.it.md) · [🇳🇱 Nederlands](README.nl.md) · [🇵🇱 Polski](README.pl.md) · [🇧🇷 Português (Brasil)](README.pt-BR.md) · [🇷🇺 Русский](README.ru.md) · [🇺🇦 Українська](README.uk.md) · [🇹🇷 Türkçe](README.tr.md) · [🇦🇿 Azərbaycanca](README.az.md) · [🇭🇷 Hrvatski](README.hr.md) · [🇮🇩 Bahasa Indonesia](README.id.md) · [🇻🇳 Tiếng Việt](README.vi.md) · [🇹🇭 ไทย](README.th.md) · [🇯🇵 日本語](README.ja.md) · [🇰🇷 한국어](README.ko.md) · [🇨🇳 简体中文](README.zh-Hans.md) · [🇹🇼 繁體中文](README.zh-TW.md) · [🇸🇦 العربية](README.ar.md) · [🇮🇱 עברית](README.he.md) · [🇮🇷 فارسی](README.fa.md) · [🇮🇳 हिन्दी](README.hi.md) · [🇵🇰 اردو](README.ur.md) · [🇧🇩 বাংলা](README.bn.md)
 
 > Traducido del README en inglés el 11 de octubre de 2026. La versión en inglés es la que se mantiene al día.
-
-## Patrocinadores de pago
-
-<table width="100%">
-  <tr>
-    <td align="center">
-      <a href="https://proxyon.io/?ref=concat"><img src="https://raw.githubusercontent.com/shantonda/sjcut/main/assets/proxyon_sponsor_logo.png" alt="Proxyon" width="80" /></a><br />
-      <a href="https://proxyon.io/?ref=concat"><b>Proxyon</b></a><br />
-      <sub>Proxies de pago por uso para desarrolladores<br />Usa el código <code>JUB0T</code> para un 20 % de descuento</sub>
-    </td>
-  </tr>
-</table>
 
 </div>
 
@@ -74,7 +60,7 @@ Todo corre en local sobre un motor nativo en Rust con un compositor por GPU. Ins
 
 Dos formas de entrar:
 
-1. **[El sitio web](https://concat.standalones.org/#download)** te da la compilación adecuada para tu máquina. Empieza aquí.
+1. **[El sitio web](https://github.com/shantonda/sjcut/releases)** te da la compilación adecuada para tu máquina. Empieza aquí.
 2. **[GitHub Releases](https://github.com/shantonda/sjcut/releases)** tiene todas las compilaciones para todas las plataformas, con instaladores, paquetes y sumas de verificación. Para cuando quieras elegir.
 
 SJCut está en **beta**: funciona, y aún tiene aristas. [Cuéntalo](https://github.com/shantonda/sjcut/issues) cuando encuentres una.
@@ -114,6 +100,3 @@ Los **requisitos del sistema** y los tamaños de los modelos opcionales están e
   <img alt="Contributors" src="https://contrib.rocks/image?repo=shantonda/sjcut">
 </a>
 
-## DMCA
-
-Si crees que algo de este repositorio, de sus versiones publicadas o de un paquete o modelo que distribuye infringe tus derechos de autor, escribe a [jub0trd@gmail.com](mailto:jub0trd@gmail.com) con una descripción de la obra que te pertenece, un enlace al lugar donde aparece aquí el material infractor, tus datos de contacto, una declaración de que crees de buena fe que el uso no está autorizado por ti, por tu representante ni por la ley, y una declaración, bajo pena de perjurio, de que la notificación es exacta y de que eres el titular o estás autorizado para actuar en su nombre, firmada con tu firma física o electrónica. Las notificaciones válidas se atienden con prontitud, y cualquier persona cuyo material sea retirado puede enviar una contranotificación a la misma dirección.

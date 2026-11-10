@@ -13,31 +13,17 @@
   <a href="https://github.com/shantonda/sjcut/releases"><img src="https://img.shields.io/github/downloads/shantonda/sjcut/total?style=flat&logo=github&logoColor=F8F8F8&label=Downloads&labelColor=212123&color=0568FD" alt="Total Downloads" /></a>
   <a href="https://github.com/shantonda/sjcut/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/shantonda/sjcut/ci.yml?style=flat&logo=githubactions&logoColor=F8F8F8&label=Build&labelColor=000000" alt="Build Status" /></a>
   <a href="https://github.com/shantonda/sjcut/releases"><img src="https://img.shields.io/badge/Version-0.2.9-0568FD?style=flat&logo=semver&logoColor=F8F8F8&labelColor=212123" alt="SJCut Version 0.2.9" /></a>
-  <a href="https://discord.gg/DVuPfpXfqP"><img src="https://img.shields.io/badge/Discord-Join%20the%20server-5865F2?style=flat&logo=discord&logoColor=F8F8F8&labelColor=000000" alt="Join SJCut Discord" /></a>
   <a href="../LICENSE"><img src="https://img.shields.io/badge/License-AGPL%20v3-0568FD?style=flat&logo=gnu&logoColor=F8F8F8&labelColor=212123" alt="License: AGPL-3.0-or-later" /></a>
 </p>
 
 <p align="center">
   <a href="https://www.star-history.com/shantonda/sjcut"><img src="https://api.star-history.com/badge?repo=shantonda/sjcut&type=rank" alt="Star History Rank" height="62" /></a>
-  <a href="https://trendshift.io/repositories/191379?utm_source=trendshift-badge&amp;utm_medium=badge&amp;utm_campaign=badge-trendshift-191379" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/trendshift/repositories/191379/daily?language=Rust" alt="shantonda%2Fsjcut | Trendshift" width="250" height="55"/></a>
-  <a href="https://concat.standalones.org/#download"><img src="../assets/download_button.svg" alt="Download SJCut" width="251" /></a>
+  <a href="https://github.com/shantonda/sjcut/releases"><img src="../assets/download_button.svg" alt="Download SJCut" width="251" /></a>
 </p>
 
 [🇬🇧 English](../README.md) · [🇩🇪 Deutsch](README.de.md) · [🇪🇸 Español](README.es.md) · [🇫🇷 Français](README.fr.md) · [🇮🇹 Italiano](README.it.md) · [🇳🇱 Nederlands](README.nl.md) · [🇵🇱 Polski](README.pl.md) · [🇧🇷 Português (Brasil)](README.pt-BR.md) · [🇷🇺 Русский](README.ru.md) · [🇺🇦 Українська](README.uk.md) · [🇹🇷 Türkçe](README.tr.md) · [🇦🇿 Azərbaycanca](README.az.md) · [🇭🇷 Hrvatski](README.hr.md) · [🇮🇩 Bahasa Indonesia](README.id.md) · [🇻🇳 Tiếng Việt](README.vi.md) · [🇹🇭 ไทย](README.th.md) · [🇯🇵 日本語](README.ja.md) · [🇰🇷 한국어](README.ko.md) · [🇨🇳 简体中文](README.zh-Hans.md) · **🇹🇼 繁體中文** · [🇸🇦 العربية](README.ar.md) · [🇮🇱 עברית](README.he.md) · [🇮🇷 فارسی](README.fa.md) · [🇮🇳 हिन्दी](README.hi.md) · [🇵🇰 اردو](README.ur.md) · [🇧🇩 বাংলা](README.bn.md)
 
 > 譯自 2026 年 10 月 11 日的英文 README。以英文版為準，它才是持續更新的版本。
-
-## 付費贊助商
-
-<table width="100%">
-  <tr>
-    <td align="center">
-      <a href="https://proxyon.io/?ref=concat"><img src="https://raw.githubusercontent.com/shantonda/sjcut/main/assets/proxyon_sponsor_logo.png" alt="Proxyon" width="80" /></a><br />
-      <a href="https://proxyon.io/?ref=concat"><b>Proxyon</b></a><br />
-      <sub>給開發者的按量計費代理<br />使用代碼 <code>JUB0T</code> 享 20 % 折扣</sub>
-    </td>
-  </tr>
-</table>
 
 </div>
 
@@ -74,7 +60,7 @@ SJCut 是一款免費、開源的影片編輯器，是 macOS、Windows、Linux �
 
 兩個入口：
 
-1. **[官網](https://concat.standalones.org/#download)** 會給您適合您機器的版本。從這裡開始。
+1. **[官網](https://github.com/shantonda/sjcut/releases)** 會給您適合您機器的版本。從這裡開始。
 2. **[GitHub Releases](https://github.com/shantonda/sjcut/releases)** 有每個平台的每個版本，附帶安裝程式、套件與校驗和。想自己挑選時用它。
 
 SJCut 處於 **測試版**：能用，但還有毛邊。遇到了請 [告訴我們](https://github.com/shantonda/sjcut/issues)。
@@ -114,6 +100,3 @@ SJCut 處於 **測試版**：能用，但還有毛邊。遇到了請 [告訴我�
   <img alt="Contributors" src="https://contrib.rocks/image?repo=shantonda/sjcut">
 </a>
 
-## DMCA
-
-如果您認為本儲存庫、其發行版本，或其散布的某個套件或模型中的內容侵害了您的著作權，請寄信至 [jub0trd@gmail.com](mailto:jub0trd@gmail.com)，並附上：您所擁有之著作的說明；侵權內容在此處出現位置的連結；您的聯絡資料；一份聲明，表示您善意相信該使用未經您、您的代理人或法律授權；以及一份在願負偽證罪責任下所作的聲明，表示通知內容正確無誤，且您是權利人或經授權代表權利人行事，並附有您的親筆簽名或電子簽名。有效的通知會迅速處理；任何內容遭移除的人，都可以向同一地址寄送反通知。

@@ -13,31 +13,17 @@
   <a href="https://github.com/shantonda/sjcut/releases"><img src="https://img.shields.io/github/downloads/shantonda/sjcut/total?style=flat&logo=github&logoColor=F8F8F8&label=Downloads&labelColor=212123&color=0568FD" alt="Total Downloads" /></a>
   <a href="https://github.com/shantonda/sjcut/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/shantonda/sjcut/ci.yml?style=flat&logo=githubactions&logoColor=F8F8F8&label=Build&labelColor=000000" alt="Build Status" /></a>
   <a href="https://github.com/shantonda/sjcut/releases"><img src="https://img.shields.io/badge/Version-0.2.9-0568FD?style=flat&logo=semver&logoColor=F8F8F8&labelColor=212123" alt="SJCut Version 0.2.9" /></a>
-  <a href="https://discord.gg/DVuPfpXfqP"><img src="https://img.shields.io/badge/Discord-Join%20the%20server-5865F2?style=flat&logo=discord&logoColor=F8F8F8&labelColor=000000" alt="Join SJCut Discord" /></a>
   <a href="../LICENSE"><img src="https://img.shields.io/badge/License-AGPL%20v3-0568FD?style=flat&logo=gnu&logoColor=F8F8F8&labelColor=212123" alt="License: AGPL-3.0-or-later" /></a>
 </p>
 
 <p align="center">
   <a href="https://www.star-history.com/shantonda/sjcut"><img src="https://api.star-history.com/badge?repo=shantonda/sjcut&type=rank" alt="Star History Rank" height="62" /></a>
-  <a href="https://trendshift.io/repositories/191379?utm_source=trendshift-badge&amp;utm_medium=badge&amp;utm_campaign=badge-trendshift-191379" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/trendshift/repositories/191379/daily?language=Rust" alt="shantonda%2Fsjcut | Trendshift" width="250" height="55"/></a>
-  <a href="https://concat.standalones.org/#download"><img src="../assets/download_button.svg" alt="Download SJCut" width="251" /></a>
+  <a href="https://github.com/shantonda/sjcut/releases"><img src="../assets/download_button.svg" alt="Download SJCut" width="251" /></a>
 </p>
 
 [🇬🇧 English](../README.md) · [🇩🇪 Deutsch](README.de.md) · [🇪🇸 Español](README.es.md) · [🇫🇷 Français](README.fr.md) · [🇮🇹 Italiano](README.it.md) · [🇳🇱 Nederlands](README.nl.md) · [🇵🇱 Polski](README.pl.md) · [🇧🇷 Português (Brasil)](README.pt-BR.md) · [🇷🇺 Русский](README.ru.md) · [🇺🇦 Українська](README.uk.md) · [🇹🇷 Türkçe](README.tr.md) · [🇦🇿 Azərbaycanca](README.az.md) · [🇭🇷 Hrvatski](README.hr.md) · [🇮🇩 Bahasa Indonesia](README.id.md) · [🇻🇳 Tiếng Việt](README.vi.md) · [🇹🇭 ไทย](README.th.md) · [🇯🇵 日本語](README.ja.md) · [🇰🇷 한국어](README.ko.md) · [🇨🇳 简体中文](README.zh-Hans.md) · [🇹🇼 繁體中文](README.zh-TW.md) · [🇸🇦 العربية](README.ar.md) · [🇮🇱 עברית](README.he.md) · [🇮🇷 فارسی](README.fa.md) · **🇮🇳 हिन्दी** · [🇵🇰 اردو](README.ur.md) · [🇧🇩 বাংলা](README.bn.md)
 
 > 11 अक्टूबर 2026 को अंग्रेज़ी README से अनुवादित। अंग्रेज़ी संस्करण ही अद्यतन रखा जाता है।
-
-## सशुल्क प्रायोजक
-
-<table width="100%">
-  <tr>
-    <td align="center">
-      <a href="https://proxyon.io/?ref=concat"><img src="https://raw.githubusercontent.com/shantonda/sjcut/main/assets/proxyon_sponsor_logo.png" alt="Proxyon" width="80" /></a><br />
-      <a href="https://proxyon.io/?ref=concat"><b>Proxyon</b></a><br />
-      <sub>डेवलपर्स के लिए उपयोग-अनुसार भुगतान वाले प्रॉक्सी<br />कोड <code>JUB0T</code> से 20 % छूट</sub>
-    </td>
-  </tr>
-</table>
 
 </div>
 
@@ -74,7 +60,7 @@ SJCut macOS, Windows, Linux और Android के लिए एक मुफ़�
 
 दो रास्ते:
 
-1. **[वेबसाइट](https://concat.standalones.org/#download)** आपकी मशीन के लिए सही बिल्ड देती है। यहीं से शुरू करें।
+1. **[वेबसाइट](https://github.com/shantonda/sjcut/releases)** आपकी मशीन के लिए सही बिल्ड देती है। यहीं से शुरू करें।
 2. **[GitHub Releases](https://github.com/shantonda/sjcut/releases)** पर हर प्लेटफ़ॉर्म की हर बिल्ड है, इंस्टॉलर, पैकेज और चेकसम के साथ। जब आप खुद चुनना चाहें।
 
 SJCut **बीटा** में है: यह काम करता है, और इसमें अभी कुछ खुरदरापन है। कोई मिले तो [बताइए](https://github.com/shantonda/sjcut/issues)।
@@ -114,6 +100,3 @@ SJCut **बीटा** में है: यह काम करता है, �
   <img alt="Contributors" src="https://contrib.rocks/image?repo=shantonda/sjcut">
 </a>
 
-## DMCA
-
-अगर आपको लगता है कि इस रिपॉज़िटरी, इसकी रिलीज़, या इसके द्वारा वितरित किसी पैकेज या मॉडल में कुछ आपके कॉपीराइट का उल्लंघन करता है, तो [jub0trd@gmail.com](mailto:jub0trd@gmail.com) पर ईमेल करें और उसमें ये शामिल करें: आपके स्वामित्व वाली कृति का विवरण, उस जगह का लिंक जहाँ उल्लंघन करने वाली सामग्री यहाँ दिखती है, आपकी संपर्क जानकारी, यह कथन कि आप सद्भावपूर्वक मानते हैं कि इस उपयोग की अनुमति न आपने, न आपके एजेंट ने और न ही क़ानून ने दी है, और झूठी गवाही के दंड के अधीन यह कथन कि नोटिस सटीक है और आप स्वामी हैं या स्वामी की ओर से कार्य करने के लिए अधिकृत हैं, जिस पर आपके हस्तलिखित या इलेक्ट्रॉनिक हस्ताक्षर हों। वैध नोटिसों पर तुरंत कार्रवाई की जाती है, और जिस किसी की सामग्री हटाई जाती है, वह उसी पते पर काउंटर-नोटिस भेज सकता है।

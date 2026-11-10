@@ -13,31 +13,17 @@
   <a href="https://github.com/shantonda/sjcut/releases"><img src="https://img.shields.io/github/downloads/shantonda/sjcut/total?style=flat&logo=github&logoColor=F8F8F8&label=Downloads&labelColor=212123&color=0568FD" alt="Total Downloads" /></a>
   <a href="https://github.com/shantonda/sjcut/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/shantonda/sjcut/ci.yml?style=flat&logo=githubactions&logoColor=F8F8F8&label=Build&labelColor=000000" alt="Build Status" /></a>
   <a href="https://github.com/shantonda/sjcut/releases"><img src="https://img.shields.io/badge/Version-0.2.9-0568FD?style=flat&logo=semver&logoColor=F8F8F8&labelColor=212123" alt="SJCut Version 0.2.9" /></a>
-  <a href="https://discord.gg/DVuPfpXfqP"><img src="https://img.shields.io/badge/Discord-Join%20the%20server-5865F2?style=flat&logo=discord&logoColor=F8F8F8&labelColor=000000" alt="Join SJCut Discord" /></a>
   <a href="../LICENSE"><img src="https://img.shields.io/badge/License-AGPL%20v3-0568FD?style=flat&logo=gnu&logoColor=F8F8F8&labelColor=212123" alt="License: AGPL-3.0-or-later" /></a>
 </p>
 
 <p align="center">
   <a href="https://www.star-history.com/shantonda/sjcut"><img src="https://api.star-history.com/badge?repo=shantonda/sjcut&type=rank" alt="Star History Rank" height="62" /></a>
-  <a href="https://trendshift.io/repositories/191379?utm_source=trendshift-badge&amp;utm_medium=badge&amp;utm_campaign=badge-trendshift-191379" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/trendshift/repositories/191379/daily?language=Rust" alt="shantonda%2Fsjcut | Trendshift" width="250" height="55"/></a>
-  <a href="https://concat.standalones.org/#download"><img src="../assets/download_button.svg" alt="Download SJCut" width="251" /></a>
+  <a href="https://github.com/shantonda/sjcut/releases"><img src="../assets/download_button.svg" alt="Download SJCut" width="251" /></a>
 </p>
 
 [🇬🇧 English](../README.md) · [🇩🇪 Deutsch](README.de.md) · [🇪🇸 Español](README.es.md) · [🇫🇷 Français](README.fr.md) · [🇮🇹 Italiano](README.it.md) · [🇳🇱 Nederlands](README.nl.md) · [🇵🇱 Polski](README.pl.md) · [🇧🇷 Português (Brasil)](README.pt-BR.md) · [🇷🇺 Русский](README.ru.md) · [🇺🇦 Українська](README.uk.md) · [🇹🇷 Türkçe](README.tr.md) · [🇦🇿 Azərbaycanca](README.az.md) · [🇭🇷 Hrvatski](README.hr.md) · [🇮🇩 Bahasa Indonesia](README.id.md) · [🇻🇳 Tiếng Việt](README.vi.md) · [🇹🇭 ไทย](README.th.md) · [🇯🇵 日本語](README.ja.md) · **🇰🇷 한국어** · [🇨🇳 简体中文](README.zh-Hans.md) · [🇹🇼 繁體中文](README.zh-TW.md) · [🇸🇦 العربية](README.ar.md) · [🇮🇱 עברית](README.he.md) · [🇮🇷 فارسی](README.fa.md) · [🇮🇳 हिन्दी](README.hi.md) · [🇵🇰 اردو](README.ur.md) · [🇧🇩 বাংলা](README.bn.md)
 
 > 2026년 10월 11일 기준 영어 README를 번역한 것입니다. 최신 내용은 영어판이 유지합니다.
-
-## 유료 스폰서
-
-<table width="100%">
-  <tr>
-    <td align="center">
-      <a href="https://proxyon.io/?ref=concat"><img src="https://raw.githubusercontent.com/shantonda/sjcut/main/assets/proxyon_sponsor_logo.png" alt="Proxyon" width="80" /></a><br />
-      <a href="https://proxyon.io/?ref=concat"><b>Proxyon</b></a><br />
-      <sub>개발자를 위한 종량제 프록시<br />코드 <code>JUB0T</code>로 20 % 할인</sub>
-    </td>
-  </tr>
-</table>
 
 </div>
 
@@ -74,7 +60,7 @@ SJCut은 macOS, Windows, Linux, Android용 무료 오픈 소스 비디오 편집
 
 두 가지 길:
 
-1. **[웹사이트](https://concat.standalones.org/#download)** 가 당신의 기기에 맞는 빌드를 건네줍니다. 여기서 시작하세요.
+1. **[웹사이트](https://github.com/shantonda/sjcut/releases)** 가 당신의 기기에 맞는 빌드를 건네줍니다. 여기서 시작하세요.
 2. **[GitHub Releases](https://github.com/shantonda/sjcut/releases)** 에는 모든 플랫폼의 모든 빌드가 설치 프로그램, 패키지, 체크섬과 함께 있습니다. 직접 고르고 싶을 때.
 
 SJCut은 **베타**입니다: 동작하지만 아직 거친 부분이 있습니다. 발견하면 [알려주세요](https://github.com/shantonda/sjcut/issues).
@@ -114,6 +100,3 @@ SJCut은 **베타**입니다: 동작하지만 아직 거친 부분이 있습니�
   <img alt="Contributors" src="https://contrib.rocks/image?repo=shantonda/sjcut">
 </a>
 
-## DMCA
-
-이 저장소나 그 릴리스, 또는 이 저장소가 배포하는 패키지나 모델에 있는 무언가가 귀하의 저작권을 침해한다고 생각되면 [jub0trd@gmail.com](mailto:jub0trd@gmail.com)로 다음 내용을 담아 이메일을 보내 주세요: 귀하가 소유한 저작물에 대한 설명, 침해 자료가 이곳에 나타나는 위치의 링크, 귀하의 연락처, 해당 사용이 귀하나 귀하의 대리인 또는 법률에 의해 허락되지 않았다고 선의로 믿는다는 진술, 그리고 위증 시 처벌을 감수하고 통지 내용이 정확하며 귀하가 권리자이거나 권리자를 대리할 권한이 있다는 진술(귀하의 자필 서명 또는 전자 서명 포함). 유효한 통지는 신속하게 처리되며, 자료가 삭제된 사람은 누구나 같은 주소로 반론 통지(counter-notice)를 보낼 수 있습니다.
