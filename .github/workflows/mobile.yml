@@ -426,7 +426,7 @@ jobs:
       # warning until a run has shown what is there.
       - name: Minimum iOS of everything in the app
         run: |
-          app=src/target/aarch64-apple-ios/release/Concat.app
+          app=src/target/aarch64-apple-ios/release/SJCut.app
           scripts/ci/check-min-os.sh "$app" "$(/usr/libexec/PlistBuddy -c 'Print :MinimumOSVersion' "$app/Info.plist")"
 
       # An .ipa is the bundle under Payload/ in a zip: the form every
@@ -440,7 +440,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p stage payload/Payload
-          cp -R src/target/aarch64-apple-ios/release/Concat.app payload/Payload/
+          cp -R src/target/aarch64-apple-ios/release/SJCut.app payload/Payload/
           (cd payload && ditto -c -k --keepParent Payload "../stage/SJCut-$VERSION-ios-arm64.ipa")
           ls -l stage
 
@@ -539,7 +539,7 @@ jobs:
       # a launch as from the home screen, watched for a minute.
       - name: Start the app on a simulator
         timeout-minutes: 25
-        run: scripts/ci/smoke-ios.sh --out smoke-ios --wait 60 src/target/aarch64-apple-ios-sim/release/Concat.app
+        run: scripts/ci/smoke-ios.sh --out smoke-ios --wait 60 src/target/aarch64-apple-ios-sim/release/SJCut.app
 
       # The app's output, the system log, the screenshot and any crash
       # report, pass or fail.
