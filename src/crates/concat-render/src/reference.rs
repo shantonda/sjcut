@@ -16,11 +16,11 @@ use std::borrow::Cow;
 
 use concat_core::frame::{BYTES_PER_PIXEL, Depth, Frame};
 use concat_core::mask::{self, MaskUniform};
-use concat_core::shader::{ShaderPass, TransitionPass};
+use concat_core::shader::TransitionPass;
 use concat_core::timeline::Blend;
 
 use crate::compositor::Compositor;
-use crate::plan::{FramePlan, Geometry, PlannedLayer, PlannedTreatment, Shading};
+use crate::plan::{FramePlan, Geometry, PlannedLayer, Shading};
 
 /// A straightforward CPU compositor.
 #[derive(Clone, Copy, Default, Debug)]
@@ -473,11 +473,12 @@ mod tests {
 
     use std::sync::Arc;
 
+    use concat_core::shader::ShaderPass;
     use concat_core::time::FrameRate;
     use concat_core::timeline::{Clip, ClipId, MediaRef, Timeline, Track, TrackKind, Transform};
 
     use super::*;
-    use crate::plan::{Crop, Transition};
+    use crate::plan::{Crop, PlannedTreatment, Transition};
 
     fn a_clip() -> ClipId {
         let mut timeline = Timeline::new(8, 8, FrameRate::THIRTY);

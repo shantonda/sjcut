@@ -2459,7 +2459,7 @@ impl Device<'_> {
                 time.as_f64(),
             );
             let lent = match (&*self.compositor, self.lent) {
-                (ExportCompositor::Gpu(gpu), true) => Some(gpu),
+                (ExportCompositor::Gpu(gpu), true) => Some(gpu.as_ref()),
                 _ => None,
             };
             match recovered(*self.losses, self.hdr, lent) {
