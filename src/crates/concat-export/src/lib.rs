@@ -46,8 +46,8 @@ use concat_media::{
 };
 use concat_project::model::{AppliedFilter, ClipMask, ColorSpace, Cutout};
 use concat_render::{
-    Compositor, Drawn, FramePlan, PlannedLayer, PlannedTreatment, Transition, WgpuCompositor,
-    plan_frame,
+    Compositor, CpuCompositor, Drawn, FramePlan, PlannedLayer, PlannedTreatment, Transition,
+    WgpuCompositor, plan_frame,
 };
 use concat_vision::{Mapping, MaskStore};
 use serde::Deserialize;
@@ -1547,43 +1547,92 @@ fn recovered(
     Ok(compositor)
 }
 
+enum Headless {
+    Gpu(Box<WgpuCompositor>),
+    // Latched once initial device open fails or a reopened GPU loses its
+    // device too, so later frames skip slow adapter probes.
+    CpuOnly,
+}
+
 /// A compositor for the frames drawn without a window: the API's and the
 /// command line's previews. Made once and kept, since making a device is
 /// far slower than drawing one small frame on it.
-fn headless<T>(draw: impl FnOnce(&mut WgpuCompositor) -> T) -> Result<T, String> {
-    static HEADLESS: std::sync::OnceLock<Option<std::sync::Mutex<WgpuCompositor>>> =
-        std::sync::OnceLock::new();
-    // A machine with nothing to draw on stays so for the process; why is
-    // in the log above this line, adapter by adapter.
-    let slot = HEADLESS
-        .get_or_init(|| {
-            let made = WgpuCompositor::new();
-            match &made {
-                Some(gpu) => {
-                    let adapter = gpu.adapter_info();
-                    log::info!(
-                        "previews draw on {} ({:?}, {:?})",
-                        adapter.name,
-                        adapter.device_type,
-                        adapter.backend
-                    );
-                }
-                None => log::error!("previews have nothing to draw on: {NO_RENDERER}"),
+fn headless(mut draw: impl FnMut(&mut dyn Compositor) -> Frame) -> Result<Vec<u8>, String> {
+    static HEADLESS: std::sync::OnceLock<std::sync::Mutex<Headless>> = std::sync::OnceLock::new();
+    let slot = HEADLESS.get_or_init(|| {
+        let state = match WgpuCompositor::new() {
+            Some(gpu) => {
+                let adapter = gpu.adapter_info();
+                log::info!(
+                    "previews draw on {} ({:?}, {:?})",
+                    adapter.name,
+                    adapter.device_type,
+                    adapter.backend
+                );
+                Headless::Gpu(Box::new(gpu))
             }
-            made.map(std::sync::Mutex::new)
-        })
-        .as_ref()
-        .ok_or_else(|| NO_RENDERER.to_owned())?;
-    let mut gpu = slot.lock().unwrap_or_else(|poisoned| poisoned.into_inner());
-    // A device that died under an earlier preview is not kept: every
-    // preview after it would be black.
-    if gpu.lost()
-        && let Some(fresh) = WgpuCompositor::new()
+            None => {
+                log::warn!("previews have no GPU ({NO_RENDERER}); drawing on CPU");
+                Headless::CpuOnly
+            }
+        };
+        std::sync::Mutex::new(state)
+    });
+    let mut state = slot.lock().unwrap_or_else(|poisoned| poisoned.into_inner());
+    if let Headless::Gpu(gpu) = &mut *state
+        && gpu.lost()
     {
-        log::warn!("previews: the GPU device was lost; drawing on a fresh one");
-        *gpu = fresh;
+        match WgpuCompositor::new() {
+            Some(fresh) => {
+                log::warn!("previews: the GPU device was lost; drawing on a fresh one");
+                **gpu = fresh;
+            }
+            None => {
+                log::warn!("previews: could not reopen GPU after device loss; drawing on CPU");
+                *state = Headless::CpuOnly;
+            }
+        }
     }
-    Ok(draw(&mut gpu))
+    if let Headless::Gpu(gpu) = &mut *state {
+        let frame = draw(gpu.as_mut());
+        if !gpu.lost() {
+            return Ok(frame.into_pixels());
+        }
+        // A device that died under this frame returned black; retry once on
+        // a fresh GPU device, or latch CPU rendering so no black frame leaks.
+        log::warn!("previews: the GPU device was lost while drawing; falling back");
+        if let Some(mut fresh) = WgpuCompositor::new() {
+            let retried = draw(&mut fresh);
+            if !fresh.lost() {
+                **gpu = fresh;
+                return Ok(retried.into_pixels());
+            }
+        }
+        log::warn!("previews: GPU fallback failed; switching previews to CPU");
+        *state = Headless::CpuOnly;
+    }
+    Ok(draw(&mut CpuCompositor).into_pixels())
+}
+
+enum ExportCompositor {
+    Gpu(Box<WgpuCompositor>),
+    Cpu(CpuCompositor),
+}
+
+impl ExportCompositor {
+    fn as_compositor_mut(&mut self) -> &mut dyn Compositor {
+        match self {
+            Self::Gpu(gpu) => gpu.as_mut(),
+            Self::Cpu(cpu) => cpu,
+        }
+    }
+
+    fn lost(&self) -> bool {
+        match self {
+            Self::Gpu(gpu) => gpu.lost(),
+            Self::Cpu(_) => false,
+        }
+    }
 }
 
 /// Composites every frame of the timeline into a soundless video file.
@@ -1602,26 +1651,36 @@ fn render_picture(
     // answered on that device again before anything else (see `recovered`).
     let lent = compositor.is_some();
     let mut compositor = match compositor {
-        Some(lent) => lent,
-        None => best_compositor()?,
+        Some(lent) => ExportCompositor::Gpu(Box::new(lent)),
+        None => match best_compositor() {
+            Ok(gpu) => ExportCompositor::Gpu(Box::new(gpu)),
+            Err(reason) => {
+                log::warn!("export: {reason}; drawing on CPU");
+                ExportCompositor::Cpu(CpuCompositor)
+            }
+        },
     };
-    // Which chip and API the file is drawn on: the first thing a report of
-    // an export gone wrong needs to say, and until now could not (#202).
-    let adapter = compositor.adapter_info();
-    log::info!(
-        "export: drawing on {} ({:?}, {:?})",
-        adapter.name,
-        adapter.device_type,
-        adapter.backend
-    );
-    // The request was held to the document's ceiling; a phone's GPU can
-    // hold less, and a frame past it is said here rather than failed on.
-    let most = compositor.max_side();
-    if request.width > most || request.height > most {
-        return Err(format!(
-            "{}×{} is more than {} can draw; the most it takes is {most} a side",
-            request.width, request.height, adapter.name
-        ));
+    if let ExportCompositor::Gpu(gpu) = &compositor {
+        // Which chip and API the file is drawn on: the first thing a report of
+        // an export gone wrong needs to say, and until now could not (#202).
+        let adapter = gpu.adapter_info();
+        log::info!(
+            "export: drawing on {} ({:?}, {:?})",
+            adapter.name,
+            adapter.device_type,
+            adapter.backend
+        );
+        // The request was held to the document's ceiling; a phone's GPU can
+        // hold less, and a frame past it is said here rather than failed on.
+        let most = gpu.max_side();
+        if request.width > most || request.height > most {
+            return Err(format!(
+                "{}×{} is more than {} can draw; the most it takes is {most} a side",
+                request.width, request.height, adapter.name
+            ));
+        }
+    } else {
+        log::info!("export: drawing on CPU");
     }
     let BuiltTimeline {
         timeline,
@@ -1660,7 +1719,7 @@ fn render_picture(
     // an HDR timeline is tone-mapped into one, as it is on a phone that
     // cannot write ten bits, rather than the export failing.
     let hdr = request.hdr && signal != Signal::Sdr && !request.codec.keeps_alpha();
-    compositor.deliver_hdr(hdr);
+    compositor.as_compositor_mut().deliver_hdr(hdr);
 
     // How many devices have died under this export so far; see `recovered`.
     let mut losses = 0;
@@ -1697,7 +1756,7 @@ fn render_picture(
         // frame is converted where it was drawn, and comes back at a byte
         // and a half a pixel rather than four.
         let planar = writer.takes;
-        compositor.planar(planar);
+        compositor.as_compositor_mut().planar(planar);
 
         // When progress was last said; see `progress_due`.
         let mut said = std::time::Instant::now();
@@ -1720,7 +1779,7 @@ fn render_picture(
         // device is for a file nobody will finish.
         let mut in_flight: std::collections::VecDeque<(i64, FramePlan)> =
             std::collections::VecDeque::new();
-        while compositor.collect().is_some() {}
+        while compositor.as_compositor_mut().collect().is_some() {}
 
         for index in 0..total_frames {
             reporter.cancelled()?;
@@ -2357,7 +2416,7 @@ const IN_FLIGHT: usize = 2;
 /// shader clock's offset, and what a device lost under the export needs to
 /// find the next (see `recovered`).
 struct Device<'a> {
-    compositor: &'a mut WgpuCompositor,
+    compositor: &'a mut ExportCompositor,
     offset: Rational,
     losses: &'a mut u32,
     hdr: bool,
@@ -2372,7 +2431,7 @@ impl Device<'_> {
     /// The compositor on the shader clock.
     fn clock(&mut self) -> EffectClock<'_> {
         EffectClock {
-            inner: &mut *self.compositor,
+            inner: self.compositor.as_compositor_mut(),
             offset: self.offset,
         }
     }
@@ -2389,20 +2448,30 @@ impl Device<'_> {
         let mut frame = draw(&mut self.clock());
         while self.compositor.lost() {
             *self.losses += 1;
-            let adapter = self.compositor.adapter_info();
+            let name = match &*self.compositor {
+                ExportCompositor::Gpu(gpu) => gpu.adapter_info().name,
+                ExportCompositor::Cpu(_) => "CPU".to_owned(),
+            };
             log::error!(
-                "export: the GPU device on {} was lost drawing frame {index} of {} \
+                "export: the GPU device on {name} was lost drawing frame {index} of {} \
                  ({:.3}s into the cut); the frame is drawn again on the next device",
-                adapter.name,
                 self.total_frames,
                 time.as_f64(),
             );
-            *self.compositor = recovered(
-                *self.losses,
-                self.hdr,
-                self.lent.then_some(&*self.compositor),
-            )?;
-            self.compositor.planar(self.planar);
+            let lent = match (&*self.compositor, self.lent) {
+                (ExportCompositor::Gpu(gpu), true) => Some(gpu),
+                _ => None,
+            };
+            match recovered(*self.losses, self.hdr, lent) {
+                Ok(mut next) => {
+                    next.planar(self.planar);
+                    *self.compositor = ExportCompositor::Gpu(Box::new(next));
+                }
+                Err(reason) => {
+                    log::warn!("export: {reason}; falling back to CPU");
+                    *self.compositor = ExportCompositor::Cpu(CpuCompositor);
+                }
+            }
             frame = draw(&mut self.clock());
         }
         Ok(frame)
@@ -2418,7 +2487,7 @@ impl Device<'_> {
         let Some(oldest) = in_flight.pop_front() else {
             return Ok(Vec::new());
         };
-        let frame = self.compositor.collect();
+        let frame = self.compositor.as_compositor_mut().collect();
         if let Some(frame) = frame
             && !self.compositor.lost()
         {
@@ -2649,7 +2718,7 @@ pub fn preview_frame(
     // The window composites on its own device through `preview_sources`;
     // this is the API's and the command line's frame, on the shared
     // headless compositor.
-    headless(|gpu| sources.composite(gpu).into_pixels())
+    headless(|gpu| sources.composite(gpu))
 }
 
 /// The paused monitor's frame, described but not yet drawn: the plan
@@ -2701,7 +2770,7 @@ impl PreviewSources {
     /// The frame as raw RGBA, drawn on the shared headless compositor: the
     /// monitor's picture where the window has no device of its own.
     pub fn pixels(&self) -> Result<Vec<u8>, String> {
-        headless(|gpu| self.composite(gpu).into_pixels())
+        headless(|gpu| self.composite(gpu))
     }
 
     /// The frame drawn whole on the GPU and kept there, when what stops

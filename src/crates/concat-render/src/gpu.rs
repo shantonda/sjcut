@@ -190,9 +190,12 @@ struct VsOut {
     @location(3) offset: vec3<f32>,
     @location(4) edges: vec2<f32>,
     @location(5) pic: vec2<f32>,
-    @location(6) @interpolate(flat) shape_a: vec4<f32>,
-    @location(7) @interpolate(flat) shape_b: vec4<f32>,
-    @location(8) @interpolate(flat) shape_c: vec4<f32>,
+    // Every vertex in a quad carries identical shape parameters, so default
+    // interpolation preserves them without triggering WARP DX12 bugs with
+    // mixed flat/smooth varyings.
+    @location(6) shape_a: vec4<f32>,
+    @location(7) shape_b: vec4<f32>,
+    @location(8) shape_c: vec4<f32>,
 }
 
 @vertex
@@ -214,17 +217,17 @@ fn vs_main(in: VsIn) -> VsOut {
 @group(0) @binding(0) var layer_texture: texture_2d<f32>;
 @group(0) @binding(1) var layer_sampler: sampler;
 @group(1) @binding(0) var mask_texture: texture_2d<f32>;
-@group(1) @binding(1) var mask_sampler: sampler;
 // The ground as it stood before this layer, for the two blends that need
-// to see it; bound only for their pipelines.
+// to see it; bound only for their pipelines. All three bind groups pass the
+// same linear clamp sampler, so reusing `layer_sampler` avoids extra per-group
+// sampler heap arrays on DX12 WARP.
 @group(2) @binding(0) var ground_texture: texture_2d<f32>;
-@group(2) @binding(1) var ground_sampler: sampler;
 
 // The layer's straight colour and its alpha at this fragment, before any
 // blend: the same lines the CPU reference computes.
 fn shade(in: VsOut) -> vec4<f32> {
     let colour = textureSample(layer_texture, layer_sampler, in.uv);
-    let mask = textureSample(mask_texture, mask_sampler, in.pic);
+    let mask = textureSample(mask_texture, layer_sampler, in.pic);
     // The wipes: a pixel past the moving edge is not drawn at all.
     let kept = select(0.0, 1.0, in.pic.x < in.edges.x && in.pic.x >= in.edges.y);
     // The shape mask, multiplied in with the matte, the wipes and the rest.
@@ -245,7 +248,7 @@ fn fs_main(in: VsOut) -> @location(0) vec4<f32> {
 
 fn ground_at(position: vec4<f32>) -> vec3<f32> {
     let size = vec2<f32>(textureDimensions(ground_texture));
-    return textureSample(ground_texture, ground_sampler, position.xy / size).rgb;
+    return textureSample(ground_texture, layer_sampler, position.xy / size).rgb;
 }
 
 // Lighten and Darken weigh the lighter (darker) of the layer and the

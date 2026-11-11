@@ -249,6 +249,12 @@ impl MonitorPane {
     /// Puts a worker's frame on the monitor, or says once why it could not.
     fn show(&mut self, result: Result<Picture, String>, spec: FrameSpec, studio: &mut Studio) {
         let exact = result.as_ref().map_or(true, Picture::exact);
+        let rgba_image = |bytes: &[u8], width, height| {
+            let buffer = slint::SharedPixelBuffer::<slint::Rgba8Pixel>::clone_from_slice(
+                bytes, width, height,
+            );
+            slint::Image::from_rgba8(buffer)
+        };
         let picture = match result {
             // Drawn here and not on the worker: this is the event loop,
             // the one thread the window's renderer submits from, and a
@@ -261,13 +267,15 @@ impl MonitorPane {
                 .and_then(|texture| {
                     slint::Image::try_from(texture)
                         .map_err(|error| format!("preview texture: {error}"))
+                })
+                .or_else(|error| {
+                    log::warn!("preview GPU texture failed ({error}); falling back to software");
+                    let plan = sources.plan();
+                    sources
+                        .pixels()
+                        .map(|bytes| rgba_image(&bytes, plan.width, plan.height))
                 }),
-            Ok(Picture::Pixels(bytes, width, height, _)) => {
-                let buffer = slint::SharedPixelBuffer::<slint::Rgba8Pixel>::clone_from_slice(
-                    &bytes, width, height,
-                );
-                Ok(slint::Image::from_rgba8(buffer))
-            }
+            Ok(Picture::Pixels(bytes, width, height, _)) => Ok(rgba_image(&bytes, width, height)),
             Err(error) => Err(error),
         };
         match picture {

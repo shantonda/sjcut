@@ -14,7 +14,7 @@
 
 use std::borrow::Cow;
 
-use concat_core::frame::{BYTES_PER_PIXEL, Frame};
+use concat_core::frame::{BYTES_PER_PIXEL, Depth, Frame};
 use concat_core::mask::{self, MaskUniform};
 use concat_core::shader::{ShaderPass, TransitionPass};
 use concat_core::timeline::Blend;
@@ -218,10 +218,39 @@ fn mix(blend: Blend, colour: f32, under: f32, alpha: f32) -> f32 {
 /// `source` at texel coordinate `sx`, `sy` - its centre at `.0` - sampled
 /// bilinearly with the edge texels clamped, the way the GPU's sampler
 /// reads it. Straight colour and alpha in `0..=255`.
+fn pixel_bytes(depth: Depth) -> usize {
+    match depth {
+        Depth::Eight => BYTES_PER_PIXEL,
+        Depth::Sixteen => BYTES_PER_PIXEL * 2,
+    }
+}
+
+fn read_sample(pixels: &[u8], at: usize, depth: Depth) -> [f32; 4] {
+    match depth {
+        Depth::Eight => [
+            f32::from(pixels[at]),
+            f32::from(pixels[at + 1]),
+            f32::from(pixels[at + 2]),
+            f32::from(pixels[at + 3]),
+        ],
+        Depth::Sixteen => {
+            // 16-bit frames store little-endian u16 channels; dividing by 257
+            // (65535 / 255) maps them to the 0..=255 scale used here.
+            let channel = |i: usize| {
+                let value = u16::from_le_bytes([pixels[at + i * 2], pixels[at + i * 2 + 1]]);
+                f32::from(value) / 257.0
+            };
+            [channel(0), channel(1), channel(2), channel(3)]
+        }
+    }
+}
+
 pub(crate) fn sample_bilinear(source: &Frame, sx: f32, sy: f32) -> [f32; 4] {
     let width = source.width() as usize;
     let height = source.height() as usize;
-    let stride = width * BYTES_PER_PIXEL;
+    let depth = source.depth();
+    let bpp = pixel_bytes(depth);
+    let stride = width * bpp;
     let pixels = source.pixels();
     let x0 = (sx.floor().max(0.0) as usize).min(width - 1);
     let y0 = (sy.floor().max(0.0) as usize).min(height - 1);
@@ -236,9 +265,9 @@ pub(crate) fn sample_bilinear(source: &Frame, sx: f32, sy: f32) -> [f32; 4] {
         (x0, y1, (1.0 - fx) * fy),
         (x1, y1, fx * fy),
     ] {
-        let at = corner_y * stride + corner_x * BYTES_PER_PIXEL;
+        let corner = read_sample(pixels, corner_y * stride + corner_x * bpp, depth);
         for channel in 0..4 {
-            sample[channel] += f32::from(pixels[at + channel]) * weight;
+            sample[channel] += corner[channel] * weight;
         }
     }
     sample
@@ -329,34 +358,32 @@ fn blend_aligned(output: &mut Frame, picture: &Frame, geometry: &Geometry, weigh
     let Some((dst_y, src_y, rows)) = overlap(y, picture.height(), output.height()) else {
         return;
     };
-    let src_stride = picture.width() as usize * BYTES_PER_PIXEL;
+    let src_depth = picture.depth();
+    let src_bpp = pixel_bytes(src_depth);
+    let src_stride = picture.width() as usize * src_bpp;
     let dst_stride = output.width() as usize * BYTES_PER_PIXEL;
-    let span = columns as usize * BYTES_PER_PIXEL;
+    let src_span = columns as usize * src_bpp;
+    let dst_span = columns as usize * BYTES_PER_PIXEL;
     let (fitted_w, fitted_h) = (picture.width() as f32, picture.height() as f32);
 
     let src_pixels = picture.pixels();
     let dst_pixels = output.pixels_mut();
 
     for row in 0..rows as usize {
-        let src_offset = (src_y as usize + row) * src_stride + src_x as usize * BYTES_PER_PIXEL;
+        let src_offset = (src_y as usize + row) * src_stride + src_x as usize * src_bpp;
         let dst_offset = (dst_y as usize + row) * dst_stride + dst_x as usize * BYTES_PER_PIXEL;
         let v = (src_y as f32 + row as f32 + 0.5) / fitted_h;
 
-        let src_row = &src_pixels[src_offset..src_offset + span];
-        let dst_row = &mut dst_pixels[dst_offset..dst_offset + span];
+        let src_row = &src_pixels[src_offset..src_offset + src_span];
+        let dst_row = &mut dst_pixels[dst_offset..dst_offset + dst_span];
 
         for (column, (src_pixel, dst_pixel)) in src_row
-            .chunks_exact(BYTES_PER_PIXEL)
+            .chunks_exact(src_bpp)
             .zip(dst_row.chunks_exact_mut(BYTES_PER_PIXEL))
             .enumerate()
         {
             let u = (src_x as f32 + column as f32 + 0.5) / fitted_w;
-            let sample = [
-                f32::from(src_pixel[0]),
-                f32::from(src_pixel[1]),
-                f32::from(src_pixel[2]),
-                f32::from(src_pixel[3]),
-            ];
+            let sample = read_sample(src_pixel, 0, src_depth);
             weigh.blend_into(dst_pixel, sample, u, v);
         }
     }

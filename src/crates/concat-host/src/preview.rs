@@ -164,7 +164,11 @@ impl Monitor {
     pub fn has_gpu(&self) -> bool {
         #[cfg(feature = "gpu")]
         {
-            self.gpu.is_some()
+            self.gpu.as_ref().is_some_and(|gpu| {
+                !gpu.lock()
+                    .unwrap_or_else(|poisoned| poisoned.into_inner())
+                    .lost()
+            })
         }
         #[cfg(not(feature = "gpu"))]
         {
