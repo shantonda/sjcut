@@ -164,6 +164,7 @@ impl Monitor {
     pub fn has_gpu(&self) -> bool {
         #[cfg(feature = "gpu")]
         {
+            use concat_render::Compositor;
             self.gpu.as_ref().is_some_and(|gpu| {
                 !gpu.lock()
                     .unwrap_or_else(|poisoned| poisoned.into_inner())
